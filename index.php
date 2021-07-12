@@ -30,6 +30,10 @@
 
   <link rel="stylesheet" href="css/hover.css">
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -104,10 +108,10 @@
 
           <div class="row align-items-center">
 
-            <div class="col-3 pt-5 ">
-              <div class=" teacher2 zoom">
-                <img class="img-absolute  " src="images/RANGER.png" alt="" width="" height="">
-                <img class="img-absolute " src="images/S10.png" alt="" width="" height="">
+            <div class="col-3 ">
+              <div class="  zoom">
+                <img class="two-columns " src="images/RANGER.png" alt="" width="" height="">
+                <img class="two-columns " src="images/S10.png" alt="" width="" height="">
               </div>
             </div>
 
@@ -118,25 +122,15 @@
 
             </div>
 
-            <div class="col-3 pt-5">
-              <div class=" teacher1 zoom">
-                <img class="img-absolute " src="images/HILUX.png" alt="" width="" height="">
-                <img class="img-absolute " src="images/F350.png" alt="" width="474" height="316">
+            <div class="col-3">
+              <div class="  zoom">
+                <img class="two-columns " src="images/HILUX.png" alt="" width="" height="">
+                <img class="two-columns " src="images/F350.png" alt="" width="" height="">
               </div>
             </div>
             
             
-            <div class="col-12">
-              <ul class="ulx">
-                <li class="lix"><a class="active" href="vehiculos.php">Vehículos</a></li>
-                <li class="lix"><a href="#news">Mantenimiento</a></li>
-                <li class="lix"><a href="#contact">Tramites</a></li>
-                <li class="lix"><a href="#about">Proveedores</a></li>
-              </ul>
-            </div>
-
-
-
+          
 
 
 

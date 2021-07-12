@@ -1145,10 +1145,8 @@ h1, h2, h3, h4, h5,
           color: #000;
           background: #e3e3e3; }
           .my-custom-scrollbar {
-            position: relative;
-            height: 350px;
-            overflow: auto;
-            width: 155%;
+      
+              max-height:300px 
             
             }
             .margen1{

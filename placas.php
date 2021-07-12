@@ -26,6 +26,9 @@
 
   <link rel="stylesheet" href="css/style.css">
 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -103,14 +106,14 @@
                   <div class="form-group">
                     <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Buscar placas...">
                   </div>
-                  <div class="table-responsive ">
+                  <div class="table-responsive my-custom-scrollbar ">
                     <table class="table table-dark " id="mytable">
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Marca</th>
-                          <th>Submarca</th>
-                          <th>Tipo</th>
+                          <th>Vehiculo</th>
+                          <th>Fecha de vencimiento</th>
+                          <th>Estatus</th>
                           <th>Eliminar</th>
                           <th>Modificar</th>
 
@@ -120,22 +123,22 @@
                       </thead>
                       <tbody>
 
-                        <?php 
-                        
+                        <?php
+
                         include 'php/consulta.php';
 
                         $suma = 0;
                         $numero = 1;
-                        while ($mostrar = mysqli_fetch_array($ejecutarrol)) {
+                        while ($mostrar = mysqli_fetch_array($resultadoplacas)) {
 
                           $suma = $numero + $suma;
 
                         ?>
                           <tr>
                             <td><?php echo $suma ?></td>
-                            <td><?php echo $mostrar['marca'] ?></td>
-                            <td><?php echo $mostrar['submarca'] ?></td>
-                            <td><?php echo $mostrar['tipo'] ?></td>
+                            <td><?php echo $mostrar['vehiculo_id'] ?></td>
+                            <td><?php echo $mostrar['vencimiento'] ?></td>
+                            <td><?php echo $mostrar['estatus'] ?></td>
                             <td><a class="btn btn-danger" href="php/Vehiculo/eliminar_vehiculo.php?id=<?php echo $mostrar['id_vehiculo'] ?>">Eliminar
                               </a></td>
                             <td><a class="btn btn-warning" type="button" data-toggle="modal" data-target="#editarvehiculo">Modificar
@@ -176,23 +179,24 @@
           </button>
         </div>
         <div class="modal-body">
-          <Form class="form" action="php/Vehiculo/registro_vehiculo.php" method="POST" enctype="multipart/form-data">
+          <Form class="form" action="php/placas/registro_placas.php" method="POST" enctype="multipart/form-data">
 
             <div class="container-fluid">
 
-            <div class="row">
+              <div class="row">
                 <div class="form-group col-md-12">
-                
-                  <select class="form-control" name="id">
-                    <option  disabled selected>Selecciona el vehiculo</option>
-                    
-                    <?php foreach ($ejecutarrol as $opcionesv) :   ?>
 
-                      <option value="<?php echo $opcionesV["id⁪_vehiculo"] ?>">
-                        <?php echo $opcionesv["tipo"] ?>
+                  <select class="form-control" name="vehiculo">
+                    <option disabled selected>Selecciona el vehiculo</option>
+                      <?php include 'php/Vehiculo/consultaV.php'; ?>
+                    <?php foreach ($vehiculos as $opcionesv) :   ?>
+
+                      <option value="<?php echo $opcionesv["id_vehiculo"]?>">
+                        <?php echo $opcionesv["marca"] ?>
                       </option>
 
                     <?php endforeach ?>
+                    <option value="1">aqu</option>
                   </select>
                 </div>
               </div>
@@ -200,12 +204,29 @@
 
               <div class="row">
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Tipo</label>
-                  <input type="text" name="tipo" class="form-control">
+                  <label for="" class="col-form-label">Fecha</label>
+                  <input type="date" name="fecha" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Modelo</label>
-                  <input type="text" name="modelo" class="form-control">
+                  <div class="radios">
+                    <!-- Material inline 1 -->
+                    <div class="mb-1">
+                      <label class="col-form-label" for="">Estatus de placas</label>
+                    </div>
+                    <div class="form-check form-switch form-check-inline">
+                      <input type="radio" class="form-check-input" name="estatus" id="materialInline1">
+                      <label class="form-check-label"  for="materialInline1">Activas</label>
+                    </div>
+                    <!-- Material inline 2 -->
+                    <div class="form-check form-switch form-check-inline">
+                      <input type="radio" class="form-check-input" name="estatus" id="materialInline2">
+                      <label class="form-check-label" for="materialInline2">vencidas</label>
+                    </div>
+
+                  </div>
+
+
+
                 </div>
               </div>
 
@@ -243,35 +264,35 @@
   <script src="js/main.js"></script>
   <script src="dist/js/jspdf.plugin.autotable.min.js"></script>
 
-<!--Buscador -->
-<script>
-  $(document).ready(function() {
-    $("#search").keyup(function() {
-      _this = this;
+  <!--Buscador -->
+  <script>
+    $(document).ready(function() {
+      $("#search").keyup(function() {
+        _this = this;
 
-      $.each($("#mytable tbody tr"), function() {
-        if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
-          $(this).hide();
-        else
-          $(this).show();
+        $.each($("#mytable tbody tr"), function() {
+          if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+            $(this).hide();
+          else
+            $(this).show();
+        });
       });
+
     });
+    $(document).ready(function() {
+      $("#searcht").keyup(function() {
+        _this = this;
 
-  });
-  $(document).ready(function() {
-    $("#searcht").keyup(function() {
-      _this = this;
-
-      $.each($("#mytable tbody tr"), function() {
-        if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
-          $(this).hide();
-        else
-          $(this).show();
+        $.each($("#mytable tbody tr"), function() {
+          if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+            $(this).hide();
+          else
+            $(this).show();
+        });
       });
-    });
 
-  });
-</script>
+    });
+  </script>
 
 </body>
 

@@ -5,8 +5,8 @@ $vehiculo = "SELECT * FROM vehiculos";
 $ejecutarrol = mysqli_query($cone, $vehiculo);
 
 
-$tabla = "SELECT * FROM usuarios WHERE rol_id=1";
-$resultado = mysqli_query($cone, $tabla);
+$placas = "SELECT * FROM placas ";
+$resultadoplacas = mysqli_query($cone, $placas);
 
 $tabla = "SELECT * FROM usuarios WHERE rol_id=2";
 $resultadou = mysqli_query($cone, $tabla);

@@ -178,3 +178,8 @@
   .active {
 	background-color: #165d8b;
   }
+
+  .two-columns {
+	width: 100%;
+height: auto;
+	}
