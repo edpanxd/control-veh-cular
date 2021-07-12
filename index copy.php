@@ -44,35 +44,48 @@
 
     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
 
-      <div class="container-fluid">
-        <div class="d-flex align-items-center">
-          <div class="site-logo mr-auto w-26 logo"><img src="images/logo.png" alt=""  width="300" height="120"></div>
+<div class="container-fluid">
+  <div class="d-flex align-items-center">
+    <div class="site-logo mr-auto w-26"><a href="index.html">BIOIN</a></div>
 
-          <div class="mx-auto text-center">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-              <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
-                <li><a href="admin.php" class="nav-link">Inicio</a></li>
-                <li><a href="periodo.php" class="nav-link">perdiodo</a></li>
-                <li><a href="Usuarios.php" class="nav-link">Administracion</a></li>
-                <li><a href="profesor.php" class="nav-link">Profesores</a></li>
-                <li><a href="#teachers-section" class="nav-link">Resultados</a></li>
-                
-              </ul>
-            </nav>
-          </div>
+    <div class="mx-auto text-center">
+      <nav class=" navbar site-navigation position-relative text-right" role="navigation">
+        <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
+          <li><a href="index.php" class="nav-link">Inicio</a></li>
+          <li><a href="vehiculos.php" class="nav-link">Vehículos</a></li>
 
-          <div class="ml-auto w-25">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-              <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
-                <a class="btn btn-primary btn-pill" href="php/cerrarsesion.php"  class="nav-link">cerrar sesion
-                </a>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+             Modulos
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Placas</a>
+              <a class="dropdown-item" href="#">Poliza</a>
+              <a class="dropdown-item" href="#">Tenencia</a>
+            </div>
+          </li>
 
-    </header>
+
+
+        </ul>
+
+
+
+      </nav>
+
+     
+
+
+
+    </div>
+
+    <div class="ml-auto w-26">
+      <a href="" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
+    </div>
+  </div>
+</div>
+
+</header>
 
     <div class="intro-section" id="home-section">
 

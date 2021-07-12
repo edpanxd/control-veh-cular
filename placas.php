@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Control Vehícular</title>
+  <title>Evaluacion</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -25,7 +25,6 @@
   <link rel="stylesheet" href="css/aos.css">
 
   <link rel="stylesheet" href="css/style.css">
-
 
 </head>
 
@@ -57,7 +56,7 @@
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                   Modulos
+                    Modulos
                   </a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="placas.php">Placas</a>
@@ -74,7 +73,7 @@
 
             </nav>
 
-           
+
 
 
 
@@ -95,17 +94,16 @@
           <div class="row align-items-center">
             <div class="col-12">
               <div class="row align-items-center">
-
-                <div class="col-xl-12 mb-4 ">
-                  <h1 data-aos="fade-up" data-aos-delay="100">vehiculos</h1>
+                <div class="col-xl-12 mb-4">
+                  <h1 data-aos="fade-up" data-aos-delay="100">Placas</h1>
                   <div class="mb-2">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarusuario">Agregar Vehículo</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarplacas">Agregar placas</button>
                   </div>
 
                   <div class="form-group">
-                    <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Buscar vehiculo...">
+                    <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Buscar placas...">
                   </div>
-                  <div class="table-responsive  my-custom-scrollbar margen1">
+                  <div class="table-responsive ">
                     <table class="table table-dark " id="mytable">
                       <thead>
                         <tr>
@@ -113,11 +111,6 @@
                           <th>Marca</th>
                           <th>Submarca</th>
                           <th>Tipo</th>
-                          <th>Modelo</th>
-                          <th>Color</th>
-                          <th>placas</th>
-                          <th>Serie</th>
-                          <th>Numero de motor</th>
                           <th>Eliminar</th>
                           <th>Modificar</th>
 
@@ -127,7 +120,10 @@
                       </thead>
                       <tbody>
 
-                        <?php include 'php/consulta.php';
+                        <?php 
+                        
+                        include 'php/consulta.php';
+
                         $suma = 0;
                         $numero = 1;
                         while ($mostrar = mysqli_fetch_array($ejecutarrol)) {
@@ -140,11 +136,6 @@
                             <td><?php echo $mostrar['marca'] ?></td>
                             <td><?php echo $mostrar['submarca'] ?></td>
                             <td><?php echo $mostrar['tipo'] ?></td>
-                            <td><?php echo $mostrar['modelo'] ?></td>
-                            <td><?php echo $mostrar['color'] ?></td>
-                            <td><?php echo $mostrar['placas'] ?></td>
-                            <td><?php echo $mostrar['serie'] ?></td>
-                            <td><?php echo $mostrar['numero_motor'] ?></td>
                             <td><a class="btn btn-danger" href="php/Vehiculo/eliminar_vehiculo.php?id=<?php echo $mostrar['id_vehiculo'] ?>">Eliminar
                               </a></td>
                             <td><a class="btn btn-warning" type="button" data-toggle="modal" data-target="#editarvehiculo">Modificar
@@ -159,13 +150,9 @@
                     </table>
                   </div>
 
-
-
-
-
-
                 </div>
 
+                < </div>
               </div>
             </div>
 
@@ -179,8 +166,7 @@
 
 
 
-  <!--modal vehiculo-->
-  <div class="modal fade" id="agregarusuario" tabindex="-1" role="dialog" aria-labelledby="usuario" aria-hidden="true">
+  <div class="modal fade" id="agregarplacas" tabindex="-1" role="dialog" aria-labelledby="usuario" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -194,90 +180,20 @@
 
             <div class="container-fluid">
 
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Marca</label>
-                  <input type="text" name="marca" class="form-control">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Submarca</label>
-                  <input type="text" name="submarca" class="form-control">
-                </div>
-              </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                
+                  <select class="form-control" name="id">
+                    <option  disabled selected>Selecciona el vehiculo</option>
+                    
+                    <?php foreach ($ejecutarrol as $opcionesv) :   ?>
 
+                      <option value="<?php echo $opcionesV["id⁪_vehiculo"] ?>">
+                        <?php echo $opcionesv["tipo"] ?>
+                      </option>
 
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Tipo</label>
-                  <input type="text" name="tipo" class="form-control">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Modelo</label>
-                  <input type="text" name="modelo" class="form-control">
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">color</label>
-                  <input type="text" name="color" class="form-control">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">placas</label>
-                  <input type="text" name="placas" class="form-control">
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Serie</label>
-                  <input type="text" name="serie" class="form-control">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Numero de Motor</label>
-                  <input type="text" name="numero_motor" class="form-control">
-                </div>
-              </div>
-
-            </div>
-
-
-            <button type="submit" class="btn btn-primary">Guardar</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>
-          </Form>
-        </div>
-        <div class="modal-footer">
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal para editar-->
-  <div class="modal fade" id="editarvehiculo" tabindex="-1" role="dialog" aria-labelledby="usuario" aria-hidden="true">
-
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="usuario">Editar Vehiculo</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <Form class="form" action="php/Vehiculo/registro_vehiculo.php" method="POST" enctype="multipart/form-data">
-
-            <div class="container-fluid">
-
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Marca</label>
-                  <input type="text" name="marca" class="form-control">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Submarca</label>
-                  <input type="text" name="submarca" class="form-control">
+                    <?php endforeach ?>
+                  </select>
                 </div>
               </div>
 
@@ -293,27 +209,6 @@
                 </div>
               </div>
 
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">color</label>
-                  <input type="text" name="color" class="form-control">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">placas</label>
-                  <input type="text" name="placas" class="form-control">
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Serie</label>
-                  <input type="text" name="serie" class="form-control">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Numero de Motor</label>
-                  <input type="text" name="numero_motor" class="form-control">
-                </div>
-              </div>
 
             </div>
 
@@ -348,35 +243,35 @@
   <script src="js/main.js"></script>
   <script src="dist/js/jspdf.plugin.autotable.min.js"></script>
 
-  <!--Buscador -->
-  <script>
-    $(document).ready(function() {
-      $("#search").keyup(function() {
-        _this = this;
+<!--Buscador -->
+<script>
+  $(document).ready(function() {
+    $("#search").keyup(function() {
+      _this = this;
 
-        $.each($("#mytable tbody tr"), function() {
-          if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
-            $(this).hide();
-          else
-            $(this).show();
-        });
+      $.each($("#mytable tbody tr"), function() {
+        if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+          $(this).hide();
+        else
+          $(this).show();
       });
-
     });
-    $(document).ready(function() {
-      $("#searcht").keyup(function() {
-        _this = this;
 
-        $.each($("#mytable tbody tr"), function() {
-          if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
-            $(this).hide();
-          else
-            $(this).show();
-        });
+  });
+  $(document).ready(function() {
+    $("#searcht").keyup(function() {
+      _this = this;
+
+      $.each($("#mytable tbody tr"), function() {
+        if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+          $(this).hide();
+        else
+          $(this).show();
       });
-
     });
-  </script>
+
+  });
+</script>
 
 </body>
 

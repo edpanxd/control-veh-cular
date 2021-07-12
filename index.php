@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <title>Control Vehícular</title>
@@ -53,16 +53,34 @@
           <div class="site-logo mr-auto w-26"><a href="index.html">BIOIN</a></div>
 
           <div class="mx-auto text-center">
-            <nav class="site-navigation position-relative text-right" role="navigation">
+            <nav class=" navbar site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="index.php" class="nav-link">Inicio</a></li>
                 <li><a href="vehiculos.php" class="nav-link">Vehículos</a></li>
-                <li><a href="Usuarios.php" class="nav-link">...</a></li>
-                <li><a href="profesor.php" class="nav-link">...</a></li>
-                <li><a href="#teachers-section" class="nav-link">...</a></li>
+
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                   Modulos
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="placas.php">Placas</a>
+                    <a class="dropdown-item" href="#">Poliza</a>
+                    <a class="dropdown-item" href="#">Tenencia</a>
+                  </div>
+                </li>
+
+
 
               </ul>
+
+
+
             </nav>
+
+           
+
+
+
           </div>
 
           <div class="ml-auto w-26">
@@ -95,7 +113,7 @@
 
             <div class="col-6">
               <div class="row align-items-center  zoom">
-                <h1 data-aos="fade-up" class="vertical-center" data-aos-delay="100">CONTROL VEHÍCULAR</h1>
+                <h1 data-aos="fade-up" data-aos-delay="100">⁪ ⁪⁪⁪⁪⁪⁪⁪⁪CONTROL VEHÍCULAR</h1>
               </div>
 
             </div>

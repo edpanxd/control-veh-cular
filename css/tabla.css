@@ -2,6 +2,7 @@
     height: 240px;
     overflow-y: auto;
     width: 100%;
+    align-content: flex-start;
 }
 .table-fixed thead,
 .table-fixed tbody,
