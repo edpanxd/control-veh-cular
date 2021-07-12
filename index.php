@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-  <title>Evaluacion</title>
+  <title>Control Vehícular</title>
+ 
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -53,8 +55,8 @@
           <div class="mx-auto text-center">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
-                <li><a href="admin.php" class="nav-link">Inicio</a></li>
-                <li><a href="periodo.php" class="nav-link">...</a></li>
+                <li><a href="index.php" class="nav-link">Inicio</a></li>
+                <li><a href="vehiculos.php" class="nav-link">Vehículos</a></li>
                 <li><a href="Usuarios.php" class="nav-link">...</a></li>
                 <li><a href="profesor.php" class="nav-link">...</a></li>
                 <li><a href="#teachers-section" class="nav-link">...</a></li>
@@ -108,7 +110,7 @@
             
             <div class="col-12">
               <ul class="ulx">
-                <li class="lix"><a class="active" href="#home">Vehículos</a></li>
+                <li class="lix"><a class="active" href="vehiculos.php">Vehículos</a></li>
                 <li class="lix"><a href="#news">Mantenimiento</a></li>
                 <li class="lix"><a href="#contact">Tramites</a></li>
                 <li class="lix"><a href="#about">Proveedores</a></li>

@@ -1,7 +1,7 @@
 <?php
 
 
-$cone=mysqli_connect('localhost:3306', 'root', '', 'evaluacion');
+$cone=mysqli_connect('localhost:3306', 'root', '', 'control-vehicular');
 class Database{
 
     private $host;
@@ -12,7 +12,7 @@ class Database{
 
     public function __construct(){
         $this->host = 'localhost:3306';
-        $this->db = 'evaluacion';
+        $this->db = 'control-vehicular';
         $this->user = 'root';
         $this->password = '';
         $this->charset = 'utf8mb4';
