@@ -98,9 +98,9 @@
             <div class="col-12">
               <div class="row align-items-center">
                 <div class="col-xl-12 mb-4">
-                  <h1 data-aos="fade-up" data-aos-delay="100">Placas</h1>
+                  <h1 data-aos="fade-up" data-aos-delay="100">Tenencia</h1>
                   <div class="mb-2">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarplacas">Agregar placas</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarplacas">Agregar Tenencia</button>
                   </div>
 
                   <div class="form-group">
@@ -113,8 +113,9 @@
                           <th>#</th>
                           <th>Vehiculo</th>
                           <th>Placas</th>
-                          <th>Fecha de vencimiento</th>
-                          <th>Estatus</th>
+                          <th>Poliza</th>
+                          <th>Seguro</th>
+                          <th>Vigencia</th>
                           <th>Eliminar</th>
                           <th>Modificar</th>
 
@@ -131,7 +132,7 @@
                         $suma = 0;
                         $numero = 1;
 
-                        while ($mostrar = mysqli_fetch_array($placasresultado)) {
+                        while ($mostrar = mysqli_fetch_array($tenenciaresultado)) {
 
                           $suma = $numero + $suma;
 
@@ -140,12 +141,15 @@
                             <td><?php echo $suma ?></td>
                             <td><?php echo $mostrar['marca'] ?></td>
                             <td><?php echo $mostrar['placas'] ?></td>
-                            <td><?php echo $mostrar['vencimiento'] ?></td>
+                            <td><?php echo $mostrar['tenencia'] ?></td>
+                            <td><?php echo $mostrar['pago'] ?></td>
                             <td><?php echo $mostrar['estatus'] ?></td>
-                            <td><?php echo $mostrar['id'] ?></td>
-                            <td><a class="btn btn-danger" href="php/placas/eliminar_placas.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
+
+
+                            <td><a class="btn btn-danger" href="php/tenencia/eliminar_tenencia.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
                               </a></td>
-                            <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarPlacas" data-id="<?php echo $mostrar['id'] ?>" data-vehiculo="<?php echo $mostrar['id_vehiculo'] ?>" data-vencimiento="<?php echo $mostrar['vencimiento'] ?>"><i class="icon-edit"></i></button></td>
+                            <td><a class="btn btn-warning" type="button" data-toggle="modal" data-target="#editarvehiculo"><i class="icon-edit"></i>
+                              </a></td>
                           </tr>
 
                         <?php
@@ -171,18 +175,18 @@
 
 
 
-  <!--Modal agregar placas -->
+
   <div class="modal fade" id="agregarplacas" tabindex="-1" role="dialog" aria-labelledby="usuario" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="usuario">Agregar nuevo Vehiculo</h5>
+          <h5 class="modal-title" id="usuario">Agregar nueva Tenencia</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <Form class="form" action="php/placas/registro_placas.php" method="POST" enctype="multipart/form-data">
+          <Form class="form" action="php/tenencia/registro_tenencia.php" method="POST" enctype="multipart/form-data">
 
             <div class="container-fluid">
 
@@ -205,28 +209,39 @@
 
 
               <div class="row">
+
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Fecha</label>
-                  <input type="date" name="fecha" class="form-control">
+                  <label class="col-form-label" for="">Tenencia</label>
+                  <input class="form-control" name="tenencia" type="text">
                 </div>
+
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Placas vigentes</label>
+                  <label for="validationDefaultUsername">pago</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">$</span>
+                    </div>
+                    <input type="text" name="pago" class="form-control" >
+                  </div>
+                </div>
 
 
-                  <div class="form-group ">
-                    <input type="radio" class="btn-check" name="estatus" id="success-outlined" value="vigentes" autocomplete="off" checked>
-                    <label class="btn btn-outline-success" for="success-outlined">Vigentes</label>
 
-                    <input type="radio" class="btn-check" name="estatus" value="vencidas" id="danger-outlined" autocomplete="off">
-                    <label class="btn btn-outline-danger" for="danger-outlined">vencidas</label>
+                <div class="form-group col-md-12">
+                  <label for="" class="col-form-label">Estatus</label>
+
+
+                  <div class="form-group col-md-12">
+                    <input type="radio" class="btn-check" name="estatus" id="success-outlined" value="pagado" autocomplete="off" >
+                    <label class="btn btn-outline-success" for="success-outlined">Pagado</label>
+
+                    <input type="radio" class="btn-check" name="estatus" value="pendiente" id="danger-outlined" autocomplete="off">
+                    <label class="btn btn-outline-danger" for="danger-outlined">Pendiente</label>
                   </div>
 
 
-
-
-
-
                 </div>
+
               </div>
 
 
@@ -244,85 +259,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Modal para editar-->
-
-  <div class="modal fade" id="editarPlacas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <Form class="form" action="" method="POST" enctype="multipart/form-data">
-
-            <div class="container-fluid">
-
-              <div class="row">
-                <div class="form-group col-md-3">
-                  <label for="" class="col-form-label">ID</label>
-                  <input type="text" name="id" id="id" class="form-control">
-                </div>
-
-                <div class="form-group col-md-12">
-
-                  <select class="form-control" name="vehiculo" id="vehiculo"  >
-                    <option ></option>
-                    <?php include 'php/Vehiculo/consultaV.php'; ?>
-                    <?php foreach ($vehiculos as $opcionesv) :   ?>
-
-                      <option value="<?php echo $opcionesv["id_vehiculo"] ?>">
-                        <?php echo $opcionesv["marca"] ?>
-                      </option>
-
-                    <?php endforeach ?>
-                  </select>
-                </div>
-              </div>
-
-
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Fecha</label>
-                  <input type="date" name="fecha" id="fecha" class="form-control">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Placas vigentes</label>
-
-
-                  <div class="form-group ">
-                    <input type="radio" class="btn-check" name="estatus" id="success-outlined" value="vigentes" autocomplete="off" >
-                    <label class="btn btn-outline-success" for="success-outlined">Vigentes</label>
-
-                    <input type="radio" class="check btn-outline-danger" name="estatus" value="vencidas" id="danger-outlined" autocomplete="off">
-                    <label class="btn btn-outline-danger" for="danger-outlined">vencidas</label>
-                  </div>
-
-
-
-
-
-
-                </div>
-              </div>
-
-
-            </div>
-
-
-            <button type="submit" class="btn btn-primary">Guardar</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cerrar</button>
-
-          </Form>
-        </div>
-        <div class="modal-footer">
-
-        </div>
-      </div>
-    </div>
-  </div>
-
 
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -357,40 +293,21 @@
       });
 
     });
+    $(document).ready(function() {
+      $("#searcht").keyup(function() {
+        _this = this;
+
+        $.each($("#mytable tbody tr"), function() {
+          if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+            $(this).hide();
+          else
+            $(this).show();
+        });
+      });
+
+    });
   </script>
 
-  <!--Para recibir datos a modal -->
-  <script type="text/javascript">
-    var exampleModal = document.getElementById('editarPlacas')
-    exampleModal.addEventListener('show.bs.modal', function(event) {
-      // Button that triggered the modal
-      var button = event.relatedTarget
-      // Extract info from data-bs-* attributes
-      var id = button.getAttribute('data-id')
-      var vehiculo = button.getAttribute('data-vehiculo')
-      var vencimiento = button.getAttribute('data-vencimiento')
-      
-      //  
-      //
-      //
-      //
-      var modalTitle = exampleModal.querySelector('.modal-title')
-      var modalBodyid = exampleModal.querySelector('#id')
-      var modalBodyvehiculo = exampleModal.querySelector('#vehiculo')
-      var modalBodyvencimiento = exampleModal.querySelector('#fecha')
-      
-      //
-      //
-      //
-      //
-      modalTitle.textContent = 'Editar Placas'
-      modalBodyid.value = id
-      modalBodyvehiculo.value = vehiculo
-      modalBodyvencimiento.value = vencimiento
-      
-      
-    })
-  </script>
 </body>
 
 </html>

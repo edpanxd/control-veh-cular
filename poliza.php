@@ -98,9 +98,9 @@
             <div class="col-12">
               <div class="row align-items-center">
                 <div class="col-xl-12 mb-4">
-                  <h1 data-aos="fade-up" data-aos-delay="100">Placas</h1>
+                  <h1 data-aos="fade-up" data-aos-delay="100">poliza</h1>
                   <div class="mb-2">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarplacas">Agregar placas</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarplacas">Agregar poliza</button>
                   </div>
 
                   <div class="form-group">
@@ -113,8 +113,9 @@
                           <th>#</th>
                           <th>Vehiculo</th>
                           <th>Placas</th>
-                          <th>Fecha de vencimiento</th>
-                          <th>Estatus</th>
+                          <th>Poliza</th>
+                          <th>Seguro</th>
+                          <th>Vigencia</th>
                           <th>Eliminar</th>
                           <th>Modificar</th>
 
@@ -130,8 +131,8 @@
 
                         $suma = 0;
                         $numero = 1;
-
-                        while ($mostrar = mysqli_fetch_array($placasresultado)) {
+                        
+                        while ($mostrar = mysqli_fetch_array($polizaresultado )) {
 
                           $suma = $numero + $suma;
 
@@ -140,12 +141,15 @@
                             <td><?php echo $suma ?></td>
                             <td><?php echo $mostrar['marca'] ?></td>
                             <td><?php echo $mostrar['placas'] ?></td>
-                            <td><?php echo $mostrar['vencimiento'] ?></td>
-                            <td><?php echo $mostrar['estatus'] ?></td>
-                            <td><?php echo $mostrar['id'] ?></td>
-                            <td><a class="btn btn-danger" href="php/placas/eliminar_placas.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
+                            <td><?php echo $mostrar['poliza'] ?></td>
+                            <td><?php echo $mostrar['seguro'] ?></td>
+                            <td><?php echo $mostrar['vigencia'] ?></td>
+                           
+
+                            <td><a class="btn btn-danger" href="php/poliza/eliminar_poliza.php?id=<?php echo $mostrar['id'] ?>">Eliminar
                               </a></td>
-                            <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarPlacas" data-id="<?php echo $mostrar['id'] ?>" data-vehiculo="<?php echo $mostrar['id_vehiculo'] ?>" data-vencimiento="<?php echo $mostrar['vencimiento'] ?>"><i class="icon-edit"></i></button></td>
+                            <td><a class="btn btn-warning" type="button" data-toggle="modal" data-target="#editarvehiculo">Modificar
+                              </a></td>
                           </tr>
 
                         <?php
@@ -171,7 +175,7 @@
 
 
 
-  <!--Modal agregar placas -->
+
   <div class="modal fade" id="agregarplacas" tabindex="-1" role="dialog" aria-labelledby="usuario" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
@@ -182,7 +186,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <Form class="form" action="php/placas/registro_placas.php" method="POST" enctype="multipart/form-data">
+          <Form class="form" action="php/poliza/registro_poliza.php" method="POST" enctype="multipart/form-data">
 
             <div class="container-fluid">
 
@@ -205,27 +209,34 @@
 
 
               <div class="row">
+                
+                      <div class="form-group col-md-12">
+                        <label class="col-form-label" for="">Poliza</label> 
+                        <input  class="form-control" name="poliza" type="text">
+                      </div>
+
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Fecha</label>
-                  <input type="date" name="fecha" class="form-control">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Placas vigentes</label>
+                  <label for="" class="col-form-label">Seguro</label>
 
 
                   <div class="form-group ">
-                    <input type="radio" class="btn-check" name="estatus" id="success-outlined" value="vigentes" autocomplete="off" checked>
-                    <label class="btn btn-outline-success" for="success-outlined">Vigentes</label>
-
-                    <input type="radio" class="btn-check" name="estatus" value="vencidas" id="danger-outlined" autocomplete="off">
-                    <label class="btn btn-outline-danger" for="danger-outlined">vencidas</label>
+                    <input type="radio" class="btn-check" name="seguro" id="success-outlined" value="activo" autocomplete="off" checked>
+                    <label class="btn btn-outline-success" for="success-outlined">Activo</label>
+                  
+                    <input type="radio" class="btn-check" name="seguro" value="no activo" id="danger-outlined" autocomplete="off">
+                    <label class="btn btn-outline-danger" for="danger-outlined">No activo</label>
                   </div>
 
 
 
+                      
 
 
+                </div>
 
+                <div class="form-group col-md-6">
+                  <label for="" class="col-form-label">vigencia</label>
+                  <input type="date" name="fecha" class="form-control">
                 </div>
               </div>
 
@@ -244,85 +255,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Modal para editar-->
-
-  <div class="modal fade" id="editarPlacas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <Form class="form" action="" method="POST" enctype="multipart/form-data">
-
-            <div class="container-fluid">
-
-              <div class="row">
-                <div class="form-group col-md-3">
-                  <label for="" class="col-form-label">ID</label>
-                  <input type="text" name="id" id="id" class="form-control">
-                </div>
-
-                <div class="form-group col-md-12">
-
-                  <select class="form-control" name="vehiculo" id="vehiculo"  >
-                    <option ></option>
-                    <?php include 'php/Vehiculo/consultaV.php'; ?>
-                    <?php foreach ($vehiculos as $opcionesv) :   ?>
-
-                      <option value="<?php echo $opcionesv["id_vehiculo"] ?>">
-                        <?php echo $opcionesv["marca"] ?>
-                      </option>
-
-                    <?php endforeach ?>
-                  </select>
-                </div>
-              </div>
-
-
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Fecha</label>
-                  <input type="date" name="fecha" id="fecha" class="form-control">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Placas vigentes</label>
-
-
-                  <div class="form-group ">
-                    <input type="radio" class="btn-check" name="estatus" id="success-outlined" value="vigentes" autocomplete="off" >
-                    <label class="btn btn-outline-success" for="success-outlined">Vigentes</label>
-
-                    <input type="radio" class="check btn-outline-danger" name="estatus" value="vencidas" id="danger-outlined" autocomplete="off">
-                    <label class="btn btn-outline-danger" for="danger-outlined">vencidas</label>
-                  </div>
-
-
-
-
-
-
-                </div>
-              </div>
-
-
-            </div>
-
-
-            <button type="submit" class="btn btn-primary">Guardar</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cerrar</button>
-
-          </Form>
-        </div>
-        <div class="modal-footer">
-
-        </div>
-      </div>
-    </div>
-  </div>
-
 
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -357,40 +289,21 @@
       });
 
     });
+    $(document).ready(function() {
+      $("#searcht").keyup(function() {
+        _this = this;
+
+        $.each($("#mytable tbody tr"), function() {
+          if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+            $(this).hide();
+          else
+            $(this).show();
+        });
+      });
+
+    });
   </script>
 
-  <!--Para recibir datos a modal -->
-  <script type="text/javascript">
-    var exampleModal = document.getElementById('editarPlacas')
-    exampleModal.addEventListener('show.bs.modal', function(event) {
-      // Button that triggered the modal
-      var button = event.relatedTarget
-      // Extract info from data-bs-* attributes
-      var id = button.getAttribute('data-id')
-      var vehiculo = button.getAttribute('data-vehiculo')
-      var vencimiento = button.getAttribute('data-vencimiento')
-      
-      //  
-      //
-      //
-      //
-      var modalTitle = exampleModal.querySelector('.modal-title')
-      var modalBodyid = exampleModal.querySelector('#id')
-      var modalBodyvehiculo = exampleModal.querySelector('#vehiculo')
-      var modalBodyvencimiento = exampleModal.querySelector('#fecha')
-      
-      //
-      //
-      //
-      //
-      modalTitle.textContent = 'Editar Placas'
-      modalBodyid.value = id
-      modalBodyvehiculo.value = vehiculo
-      modalBodyvencimiento.value = vencimiento
-      
-      
-    })
-  </script>
 </body>
 
 </html>

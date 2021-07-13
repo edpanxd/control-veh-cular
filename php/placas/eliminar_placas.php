@@ -2,12 +2,12 @@
 include '../conn.php';
 
 $id = $_GET['id'];
-$eliminar= "DELETE FROM vehiculos WHERE id_vehiculo ='$id'";
+$eliminar= "DELETE FROM placas WHERE id='$id'";
 
 $resultado = mysqli_query($cone, $eliminar);
 
 if($resultado){
-header("Location: ../../vehiculos.php");
+header("Location: ../../placas.php");
 }
 else{
     echo "F";

@@ -68,8 +68,8 @@
                   </a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="placas.php">Placas</a>
-                    <a class="dropdown-item" href="#">Poliza</a>
-                    <a class="dropdown-item" href="#">Tenencia</a>
+                    <a class="dropdown-item" href="poliza.php">Poliza</a>
+                    <a class="dropdown-item" href="tenencia.php">Tenencia</a>
                   </div>
                 </li>
 
@@ -118,6 +118,7 @@
             <div class="col-6">
               <div class="row align-items-center  zoom">
                 <h1 data-aos="fade-up" data-aos-delay="100">⁪ ⁪⁪⁪⁪⁪⁪⁪⁪CONTROL VEHÍCULAR</h1>
+              <!--  <embed src="images/pdf.pdf" width=”500″ height=”375″> -->
               </div>
 
             </div>
