@@ -255,7 +255,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <Form class="form" action="" method="POST" enctype="multipart/form-data">
+          <Form class="form" action="php/placas/actualizar_placas.php" method="POST" enctype="multipart/form-data">
 
             <div class="container-fluid">
 
@@ -292,11 +292,11 @@
 
 
                   <div class="form-group ">
-                    <input type="radio" class="btn-check" name="estatus" id="success-outlined" value="vigentes" autocomplete="off" >
-                    <label class="btn btn-outline-success" for="success-outlined">Vigentes</label>
+                    <input type="radio" class="btn-check" name="estatus" id="success-outline" value="vigentes" autocomplete="off" >
+                    <label class="btn btn-outline-success" for="success-outline">Vigentes</label>
 
-                    <input type="radio" class="check btn-outline-danger" name="estatus" value="vencidas" id="danger-outlined" autocomplete="off">
-                    <label class="btn btn-outline-danger" for="danger-outlined">vencidas</label>
+                    <input type="radio" class="btn-check" name="estatus" value="vencidas" id="danger-outline" autocomplete="off">
+                    <label class="btn btn-outline-danger" for="danger-outline">vencidas</label>
                   </div>
 
 

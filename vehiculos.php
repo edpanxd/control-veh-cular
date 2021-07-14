@@ -104,6 +104,7 @@
                   <h1 data-aos="fade-up" data-aos-delay="100">vehiculos</h1>
                   <div class="mb-2">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarusuario">Agregar Vehículo</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#importar">Importar excel de Vehículo</button>
                   </div>
 
                   <div class="form-group">
@@ -276,7 +277,7 @@
                   <div class="form-group col-md-3">
                     <label for="" class="col-form-label">ID</label>
                     <input type="text" id="id" name="id" class="form-control" readonly="readonly">
-                  </div> 
+                  </div>
                 </div>
 
                 <div class="form-group col-md-6">
@@ -327,10 +328,52 @@
 
             <button type="submit" class="btn btn-primary">Guardar</button>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cerrar</button>
+
+          </Form>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Importar -->
+  <div class="modal fade" id="importar" tabindex="-1" role="dialog" aria-labelledby="usuario" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="usuario">Agregar nuevo Vehiculo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <Form class="form" action="php/Vehiculo/registro_vehiculo.php" method="POST" enctype="multipart/form-data">
+
+          
+
+              
+                <div class=" mb-3">
+                  <input type="file" class="form-control" aria-label="Vehiculos" required>
+                  <div class="invalid-feedback">No selecciono el documento</div>
+                </div>
+
+              
+
+
+
+           
+
+            <div class="form-group mb-3">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>
+            </div>
             
           </Form>
         </div>
         <div class="modal-footer">
+
 
         </div>
       </div>
