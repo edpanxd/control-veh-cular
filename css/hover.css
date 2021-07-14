@@ -183,3 +183,6 @@
 	width: 100%;
 height: auto;
 	}
+	 .grande {
+		height: 100vh;
+		min-height: 2000px; }

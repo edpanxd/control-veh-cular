@@ -56,27 +56,30 @@
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="index.php" class="nav-link">Inicio</a></li>
                 <li><a href="vehiculos.php" class="nav-link">Vehículos</a></li>
+                <li><a href="proveedor.php" class="nav-link">Proveedores</a></li>
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Modulos
+                   Modulos
                   </a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="placas.php">Placas</a>
                     <a class="dropdown-item" href="poliza.php">Poliza</a>
                     <a class="dropdown-item" href="tenencia.php">Tenencia</a>
+                    <a class="dropdown-item" href="verificacion_a.php">verificacion A</a>
+                    <a class="dropdown-item" href="verificacion_b.php">verificacion B</a>
+                    <a class="dropdown-item" href="verificacion_federal.php">Verificacion federal</a>
+                    <a class="dropdown-item" href="fisico_mecanico.php">fisico mecanico</a>
+
                   </div>
                 </li>
-
-
-
               </ul>
 
 
 
             </nav>
 
-
+           
 
 
 
@@ -113,9 +116,9 @@
                           <th>#</th>
                           <th>Vehiculo</th>
                           <th>Placas</th>
-                          <th>Poliza</th>
-                          <th>Seguro</th>
-                          <th>Vigencia</th>
+                          <th>Tenencia</th>
+                          <th>Pago</th>
+                          <th>Estatus</th>
                           <th>Eliminar</th>
                           <th>Modificar</th>
 
@@ -142,14 +145,13 @@
                             <td><?php echo $mostrar['marca'] ?></td>
                             <td><?php echo $mostrar['placas'] ?></td>
                             <td><?php echo $mostrar['tenencia'] ?></td>
-                            <td><?php echo $mostrar['pago'] ?></td>
+                            <td>$ <?php echo $mostrar['pago'] ?></td>
                             <td><?php echo $mostrar['estatus'] ?></td>
 
 
                             <td><a class="btn btn-danger" href="php/tenencia/eliminar_tenencia.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
                               </a></td>
-                            <td><a class="btn btn-warning" type="button" data-toggle="modal" data-target="#editarvehiculo"><i class="icon-edit"></i>
-                              </a></td>
+                            <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editartenencia" data-id="<?php echo $mostrar['id'] ?>" data-vehiculo="<?php echo $mostrar['id_vehiculo'] ?>" data-tenencia="<?php echo $mostrar['tenencia'] ?>" data-pago="<?php echo $mostrar['pago'] ?>"><i class="icon-edit"></i></button></td>
                           </tr>
 
                         <?php
@@ -174,7 +176,7 @@
   </div>
 
 
-
+  <!--Agregar tenencia -->
 
   <div class="modal fade" id="agregarplacas" tabindex="-1" role="dialog" aria-labelledby="usuario" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -199,7 +201,7 @@
                     <?php foreach ($vehiculos as $opcionesv) :   ?>
 
                       <option value="<?php echo $opcionesv["id_vehiculo"] ?>">
-                        <?php echo $opcionesv["marca"] ?>
+                      <?php echo $opcionesv["marca"] ?>, con placas: <?php echo $opcionesv["placas"] ?>
                       </option>
 
                     <?php endforeach ?>
@@ -221,7 +223,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">$</span>
                     </div>
-                    <input type="text" name="pago" class="form-control" >
+                    <input type="text" name="pago" class="form-control">
                   </div>
                 </div>
 
@@ -232,7 +234,7 @@
 
 
                   <div class="form-group col-md-12">
-                    <input type="radio" class="btn-check" name="estatus" id="success-outlined" value="pagado" autocomplete="off" >
+                    <input type="radio" class="btn-check" name="estatus" id="success-outlined" value="pagado" autocomplete="off">
                     <label class="btn btn-outline-success" for="success-outlined">Pagado</label>
 
                     <input type="radio" class="btn-check" name="estatus" value="pendiente" id="danger-outlined" autocomplete="off">
@@ -254,6 +256,94 @@
         </div>
         <div class="modal-footer">
 
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--editar tenencia -->
+  <div class="modal fade" id="editartenencia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <Form class="form" action="php/tenencia/actualizar_tenencia.php" method="POST" enctype="multipart/form-data">
+
+            <div class="container-fluid">
+
+              <div class="row">
+
+              <div class="form-group col-md-3">
+                  <label for="" class="col-form-label">ID</label>
+                  <input type="text" name="id" id="id" class="form-control" readonly="readonly">
+                </div>
+
+                <div class="form-group col-md-12">
+
+                  <select class="form-control" id="vehiculo" name="vehiculo">
+                    <option disabled selected>Selecciona el vehiculo</option>
+                    <?php include 'php/Vehiculo/consultaV.php'; ?>
+                    <?php foreach ($vehiculos as $opcionesv) :   ?>
+
+                      <option value="<?php echo $opcionesv["id_vehiculo"] ?>">
+                      <?php echo $opcionesv["marca"] ?>, con placas: <?php echo $opcionesv["placas"] ?>
+                      </option>
+
+                    <?php endforeach ?>
+                  </select>
+                </div>
+              </div>
+
+
+              <div class="row">
+
+                <div class="form-group col-md-6">
+                  <label class="col-form-label" for="">Tenencia</label>
+                  <input class="form-control" id="tenencia" name="tenencia" type="text">
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="validationDefaultUsername">pago</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">$</span>
+                    </div>
+                    <input type="text" name="pago" id="pago" class="form-control">
+                  </div>
+                </div>
+
+
+
+                <div class="form-group col-md-12">
+                  <label for="" class="col-form-label">Estatus</label>
+
+
+                  <div class="form-group col-md-12">
+                    <input type="radio" class="btn-check" name="estatus" id="success-outline" value="pagado" autocomplete="off">
+                    <label class="btn btn-outline-success" for="success-outline">Pagado</label>
+
+                    <input type="radio" class="btn-check" name="estatus" value="pendiente" id="danger-outline" autocomplete="off">
+                    <label class="btn btn-outline-danger" for="danger-outline">Pendiente</label>
+                  </div>
+
+
+                </div>
+
+              </div>
+
+
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>
+          </Form>
+        </div>
+        <div class="modal-footer">
 
         </div>
       </div>
@@ -293,19 +383,40 @@
       });
 
     });
-    $(document).ready(function() {
-      $("#searcht").keyup(function() {
-        _this = this;
+  </script>
+  <script type="text/javascript">
+    var exampleModal = document.getElementById('editartenencia')
+    exampleModal.addEventListener('show.bs.modal', function(event) {
+      // Button that triggered the modal
+      var button = event.relatedTarget
+      // Extract info from data-bs-* attributes
+      var id = button.getAttribute('data-id')
+      var vehiculo = button.getAttribute('data-vehiculo')
+      var tenencia = button.getAttribute('data-tenencia')
+      var pago = button.getAttribute('data-pago')
 
-        $.each($("#mytable tbody tr"), function() {
-          if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
-            $(this).hide();
-          else
-            $(this).show();
-        });
-      });
+      //  
+      //
+      //
+      //
+      var modalTitle = exampleModal.querySelector('.modal-title')
+      var modalBodyid = exampleModal.querySelector('#id')
+      var modalBodyvehiculo = exampleModal.querySelector('#vehiculo')
+      var modalBodytenencia = exampleModal.querySelector('#tenencia')
+      var modalBodypago = exampleModal.querySelector('#pago')
 
-    });
+      //
+      //
+      //
+      //
+      modalTitle.textContent = 'Editar Tenencia'
+      modalBodyid.value = id
+      modalBodyvehiculo.value = vehiculo
+      modalBodytenencia.value = tenencia
+      modalBodypago.value = pago
+
+
+    })
   </script>
 
 </body>

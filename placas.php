@@ -56,27 +56,30 @@
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="index.php" class="nav-link">Inicio</a></li>
                 <li><a href="vehiculos.php" class="nav-link">Vehículos</a></li>
+                <li><a href="proveedor.php" class="nav-link">Proveedores</a></li>
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Modulos
+                   Modulos
                   </a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="placas.php">Placas</a>
                     <a class="dropdown-item" href="poliza.php">Poliza</a>
                     <a class="dropdown-item" href="tenencia.php">Tenencia</a>
+                    <a class="dropdown-item" href="verificacion_a.php">verificacion A</a>
+                    <a class="dropdown-item" href="verificacion_b.php">verificacion B</a>
+                    <a class="dropdown-item" href="verificacion_federal.php">Verificacion federal</a>
+                    <a class="dropdown-item" href="fisico_mecanico.php">fisico mecanico</a>
+
                   </div>
                 </li>
-
-
-
               </ul>
 
 
 
             </nav>
 
-
+           
 
 
 
@@ -98,7 +101,7 @@
             <div class="col-12">
               <div class="row align-items-center">
                 <div class="col-xl-12 mb-4">
-                  <h1 data-aos="fade-up" data-aos-delay="100">Placas</h1>
+                  <h1 data-aos="fade-up" data-aos-delay="100">Vigencia Placas</h1>
                   <div class="mb-2">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarplacas">Agregar placas</button>
                   </div>
@@ -117,9 +120,6 @@
                           <th>Estatus</th>
                           <th>Eliminar</th>
                           <th>Modificar</th>
-
-
-
                         </tr>
                       </thead>
                       <tbody>
@@ -142,7 +142,6 @@
                             <td><?php echo $mostrar['placas'] ?></td>
                             <td><?php echo $mostrar['vencimiento'] ?></td>
                             <td><?php echo $mostrar['estatus'] ?></td>
-                            <td><?php echo $mostrar['id'] ?></td>
                             <td><a class="btn btn-danger" href="php/placas/eliminar_placas.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
                               </a></td>
                             <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarPlacas" data-id="<?php echo $mostrar['id'] ?>" data-vehiculo="<?php echo $mostrar['id_vehiculo'] ?>" data-vencimiento="<?php echo $mostrar['vencimiento'] ?>"><i class="icon-edit"></i></button></td>
@@ -195,7 +194,7 @@
                     <?php foreach ($vehiculos as $opcionesv) :   ?>
 
                       <option value="<?php echo $opcionesv["id_vehiculo"] ?>">
-                        <?php echo $opcionesv["marca"] ?>
+                        <?php echo $opcionesv["marca"] ?>, con placas: <?php echo $opcionesv["placas"] ?>
                       </option>
 
                     <?php endforeach ?>
@@ -262,7 +261,7 @@
               <div class="row">
                 <div class="form-group col-md-3">
                   <label for="" class="col-form-label">ID</label>
-                  <input type="text" name="id" id="id" class="form-control">
+                  <input type="text" name="id" id="id" class="form-control" readonly="readonly">
                 </div>
 
                 <div class="form-group col-md-12">
@@ -273,7 +272,7 @@
                     <?php foreach ($vehiculos as $opcionesv) :   ?>
 
                       <option value="<?php echo $opcionesv["id_vehiculo"] ?>">
-                        <?php echo $opcionesv["marca"] ?>
+                      <?php echo $opcionesv["marca"] ?>, con placas: <?php echo $opcionesv["placas"] ?>
                       </option>
 
                     <?php endforeach ?>

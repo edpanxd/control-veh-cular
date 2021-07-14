@@ -10,12 +10,12 @@ $color=$_POST["color"];
 $placas=$_POST["placas"];
 $serie=$_POST["serie"];
 $numero_motor=$_POST["numero_motor"];
+$imagen=addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
 
 
 
-
-$insertar_vehiculo = "INSERT INTO vehiculos(marca, submarca, tipo, modelo, color, placas, serie, numero_motor)
-VALUES ('$marca', '$submarca', '$tipo', '$modelo', '$color', '$placas', '$serie', '$numero_motor')";
+$insertar_vehiculo = "INSERT INTO vehiculos(marca, submarca, tipo, modelo, color, placas, serie, numero_motor, imagen)
+VALUES ('$marca', '$submarca', '$tipo', '$modelo', '$color', '$placas', '$serie', '$numero_motor', '$imagen')";
 
 $resultadoV= mysqli_query($cone, $insertar_vehiculo);
 if (!$resultadoV) {

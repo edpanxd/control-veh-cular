@@ -3,7 +3,7 @@
 
 <head>
   <title>Control Vehícular</title>
- 
+
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -65,7 +65,7 @@
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                   Modulos
+                    Modulos
                   </a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="placas.php">Placas</a>
@@ -84,7 +84,7 @@
 
             </nav>
 
-           
+
 
 
 
@@ -107,34 +107,41 @@
 
 
       <div class="slide-1" style="background-image: url('images/carretera.jpg');" data-stellar-background-ratio="0.5">
-        <div class="container">
+        <div class="container ">
 
-          <div class="row align-items-center">
+          <div class="row  align-items-center">
 
-            <div class="col-3 ">
-              <div class="  zoom">
-                <img class="two-columns " src="images/RANGER.png" alt="" width="" height="">
-                <img class="two-columns " src="images/S10.png" alt="" width="" height="">
-              </div>
-            </div>
 
-            <div class="col-6">
-              <div class="row align-items-center  zoom">
-                <h1 data-aos="fade-up" data-aos-delay="100">⁪ ⁪⁪⁪⁪⁪⁪⁪⁪CONTROL VEHÍCULAR</h1>
-              <!--  <embed src="images/pdf.pdf" width=”500″ height=”375″> -->
-              </div>
 
-            </div>
+              <?php
 
-            <div class="col-3">
-              <div class="  zoom">
-                <img class="two-columns " src="images/HILUX.png" alt="" width="" height="">
-                <img class="two-columns " src="images/F350.png" alt="" width="" height="">
-              </div>
-            </div>
-            
-            
+              include 'php/conn.php';
+
+              $profesor = "SELECT * FROM vehiculos ";
+              $resultadop = mysqli_query($cone, $profesor);
+
+              while ($mostrar = mysqli_fetch_array($resultadop)) {
+
+              ?>
+
+                <div class="col-lg-4 mb-4 align-items-center ">
+                  <div class="card" style="width: 18rem;">
+                    <img src="data:image/jpg;base64,<?php echo base64_encode($mostrar['imagen']); ?>" class="card-img-top " alt="..." width="300" height="230">
+                    <div class="card-body">
+                      <h5 class="card-title"><?php echo $mostrar['marca'] ?></h5>
+                      <h6 class="card-text font-weight-normal"><?php echo $mostrar['submarca'] ?></h6>
+                      <a href="" class="btn btn-primary">ver datos</a>
+
+                    </div>
+                  </div>
+                </div>
+              <?php
+
+              }
+              ?>
+
           
+
 
 
 

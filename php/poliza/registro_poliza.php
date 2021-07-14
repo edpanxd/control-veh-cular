@@ -17,7 +17,7 @@ VALUES ('$id⁪', '$poliza', '$seguro', '$vigencia')";
 $resultadoP= mysqli_query($cone, $insertar_poliza);
 if (!$resultadoP) {
     
-    echo  $insertar_poliza, $resultadoP;
+    echo  $insertar_poliza, $resultadoP,$id;
 } else {
     header('Location:../../poliza.php');
 }

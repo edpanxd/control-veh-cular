@@ -62,10 +62,10 @@
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Modulos
+                   Modulos
                   </a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="placas.php">Placas</a>
+                    <a class="dropdown-item" href="correo.php">correo</a>
                     <a class="dropdown-item" href="poliza.php">Poliza</a>
                     <a class="dropdown-item" href="tenencia.php">Tenencia</a>
                     <a class="dropdown-item" href="verificacion_a.php">verificacion A</a>
@@ -81,7 +81,7 @@
 
             </nav>
 
-
+           
 
 
 
@@ -104,12 +104,9 @@
               <div class="row align-items-center">
 
                 <div class="col-xl-12 mb-4 ">
-                  <h1 data-aos="fade-up" data-aos-delay="100">vehiculos</h1>
+                  <h1 data-aos="fade-up" data-aos-delay="100">Proveedores</h1>
                   <div class="mb-2">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarusuario">Agregar Vehículo</button>
-                    <!--
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#importar">Importar excel de Vehículo</button>
-                     -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarusuario">Agregar Proveedor</button>
                   </div>
 
                   <div class="form-group">
@@ -120,14 +117,12 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>Marca</th>
-                          <th>Submarca</th>
-                          <th>Tipo</th>
-                          <th>Modelo</th>
-                          <th>Color</th>
-                          <th>placas</th>
-                          <th>Serie</th>
-                          <th>Numero de motor</th>
+                          <th>nombre</th>
+                          <th>grupo</th>
+                          <th>familia</th>
+                          <th>ubicacion</th>
+                          <th>contacto</th>
+                          <th>correo</th>
                           <th>Eliminar</th>
                           <th>Modificar</th>
 
@@ -140,24 +135,22 @@
                         <?php include 'php/consulta.php';
                         $suma = 0;
                         $numero = 1;
-                        while ($mostrar = mysqli_fetch_array($ejecutarrol)) {
+                        while ($mostrar = mysqli_fetch_array($proveedorresultado)) {
 
                           $suma = $numero + $suma;
 
                         ?>
                           <tr>
                             <td><?php echo $suma ?></td>
-                            <td><?php echo $mostrar['marca'] ?></td>
-                            <td><?php echo $mostrar['submarca'] ?></td>
-                            <td><?php echo $mostrar['tipo'] ?></td>
-                            <td><?php echo $mostrar['modelo'] ?></td>
-                            <td><?php echo $mostrar['color'] ?></td>
-                            <td><?php echo $mostrar['placas'] ?></td>
-                            <td><?php echo $mostrar['serie'] ?></td>
-                            <td><?php echo $mostrar['numero_motor'] ?></td>
-                            <td><a class="btn btn-danger" href="php/Vehiculo/eliminar_vehiculo.php?id=<?php echo $mostrar['id_vehiculo'] ?>"><i class="icon-trash"></i>
+                            <td><?php echo $mostrar['nombre'] ?></td>
+                            <td><?php echo $mostrar['grupo'] ?></td>
+                            <td><?php echo $mostrar['familia'] ?></td>
+                            <td><?php echo $mostrar['ubicacion'] ?></td>
+                            <td><?php echo $mostrar['contacto'] ?></td>
+                            <td><?php echo $mostrar['correo'] ?></td>
+                            <td><a class="btn btn-danger" href="php/Vehiculo/eliminar_vehiculo.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
                               </a></td>
-                            <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editar" data-id="<?php echo $mostrar['id_vehiculo'] ?>" data-marca="<?php echo $mostrar['marca'] ?>" data-submarca="<?php echo $mostrar['submarca'] ?>" data-tipo="<?php echo $mostrar['tipo'] ?>" data-modelo="<?php echo $mostrar['modelo'] ?>" data-color="<?php echo $mostrar['color'] ?>" data-placas="<?php echo $mostrar['placas'] ?>" data-serie="<?php echo $mostrar['serie'] ?>" data-numero="<?php echo $mostrar['numero_motor'] ?>"><i class="icon-edit"></i></button></td>
+                            <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editar" data-id="<?php echo $mostrar['id'] ?>" data-nombre="<?php echo $mostrar['nombre'] ?>" data-grupo="<?php echo $mostrar['grupo'] ?>" data-familia="<?php echo $mostrar['familia'] ?>" data-ubicacion="<?php echo $mostrar['ubicacion'] ?>" data-contacto="<?php echo $mostrar['contacto'] ?>" data-correo="<?php echo $mostrar['correo'] ?>" data-serie="<?php echo $mostrar['serie'] ?>" data-numero="<?php echo $mostrar['numero_motor'] ?>"><i class="icon-edit"></i></button></td>
                           </tr>
 
                         <?php
@@ -166,8 +159,6 @@
                         ?>
                       </tbody>
                     </table>
-
-                    
                   </div>
 
 
@@ -195,65 +186,50 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="usuario">Agregar nuevo Vehiculo</h5>
+          <h5 class="modal-title" id="usuario">Agregar proveedor</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <Form class="form" action="php/Vehiculo/registro_vehiculo.php" method="POST" enctype="multipart/form-data">
+          <Form class="form" action="php/proveedor/registro_proveedor.php" method="POST" enctype="multipart/form-data">
 
             <div class="container-fluid">
 
               <div class="row">
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Marca</label>
-                  <input type="text" name="marca" class="form-control">
+                  <label for="" class="col-form-label">Nombre</label>
+                  <input type="text" name="nombre" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Submarca</label>
-                  <input type="text" name="submarca" class="form-control">
+                  <label for="" class="col-form-label">Grupo</label>
+                  <input type="text" name="grupo" class="form-control">
                 </div>
               </div>
 
 
               <div class="row">
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Tipo</label>
-                  <input type="text" name="tipo" class="form-control">
+                  <label for="" class="col-form-label">Familia</label>
+                  <input type="text" name="familia" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Modelo</label>
-                  <input type="text" name="modelo" class="form-control">
+                  <label for="" class="col-form-label">Ubicacion</label>
+                  <input type="text" name="ubicacion" class="form-control">
                 </div>
               </div>
 
               <div class="row">
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">color</label>
-                  <input type="text" name="color" class="form-control">
+                  <label for="" class="col-form-label">Contacto</label>
+                  <input type="text" name="contacto" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">placas</label>
-                  <input type="text" name="placas" class="form-control">
+                  <label for="" class="col-form-label">Correo</label>
+                  <input type="email" name="correo" class="form-control">
                 </div>
               </div>
 
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Serie</label>
-                  <input type="text" name="serie" class="form-control">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Numero de Motor</label>
-                  <input type="text" name="numero_motor" class="form-control">
-                </div>
-              </div>
-            
-              <div class=" mb-3">
-              <input type="file" name="imagen" class="form-control" aria-label="Vehiculos" required>
-              <div class="invalid-feedback">No selecciono el documento</div>
-            </div>
 
             </div>
 
@@ -293,50 +269,37 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Marca</label>
-                  <input type="text" id="marca" name="marca" class="form-control">
+                  <label for="" class="col-form-label">Nombre</label>
+                  <input type="text" id="nombre" name="nombre" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Submarca</label>
-                  <input type="text" id="submarca" name="submarca" class="form-control">
+                  <label for="" class="col-form-label">Grupo</label>
+                  <input type="text" id="grupo" name="grupo" class="form-control">
                 </div>
               </div>
 
 
               <div class="row">
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Tipo</label>
-                  <input type="text" id="tipo" name="tipo" class="form-control">
+                  <label for="" class="col-form-label">familia</label>
+                  <input type="text" id="familia" name="familia" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Modelo</label>
-                  <input type="text" id="modelo" name="modelo" class="form-control">
+                  <label for="" class="col-form-label">ubicacion</label>
+                  <input type="text" id="ubicacion" name="ubicacion" class="form-control">
                 </div>
               </div>
 
               <div class="row">
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">color</label>
-                  <input type="text" id="color" name="color" class="form-control">
+                  <label for="" class="col-form-label">contacto</label>
+                  <input type="text" id="contacto" name="contacto" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">placas</label>
-                  <input type="text" id="placas" name="placas" class="form-control">
+                  <label for="" class="col-form-label">correo</label>
+                  <input type="text" id="correo" name="correo" class="form-control">
                 </div>
               </div>
-
-              <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Serie</label>
-                  <input type="text" id="serie" name="serie" class="form-control">
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Numero de Motor</label>
-                  <input type="text" id="numero" name="numero_motor" class="form-control">
-                </div>
-              </div>
-
-              
 
             </div>
 
@@ -365,25 +328,25 @@
         <div class="modal-body">
           <Form class="form" action="php/Vehiculo/registro_vehiculo.php" method="POST" enctype="multipart/form-data">
 
+          
+
+              
+                <div class=" mb-3">
+                  <input type="file" class="form-control" aria-label="Vehiculos" required>
+                  <div class="invalid-feedback">No selecciono el documento</div>
+                </div>
+
+              
 
 
 
-            <div class=" mb-3">
-              <input type="file" class="form-control" aria-label="Vehiculos" required>
-              <div class="invalid-feedback">No selecciono el documento</div>
-            </div>
-
-
-
-
-
-
+           
 
             <div class="form-group mb-3">
-              <button type="submit" class="btn btn-primary">Guardar</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>
             </div>
-
+            
           </Form>
         </div>
         <div class="modal-footer">
@@ -439,39 +402,34 @@
       var button = event.relatedTarget
       // Extract info from data-bs-* attributes
       var id = button.getAttribute('data-id')
-      var marca = button.getAttribute('data-marca')
-      var submarca = button.getAttribute('data-submarca')
-      var tipo = button.getAttribute('data-tipo')
-      var modelo = button.getAttribute('data-modelo')
-      var color = button.getAttribute('data-color')
-      var placas = button.getAttribute('data-placas')
-      var serie = button.getAttribute('data-serie')
-      var numero = button.getAttribute('data-numero')
-      // If necessary, you could initiate an AJAX request here
-      // and then do the updating in a callback.
+      var nombre = button.getAttribute('data-nombre')
+      var grupo = button.getAttribute('data-grupo')
+      var familia = button.getAttribute('data-familia')
+      var ubicacion = button.getAttribute('data-ubicacion')
+      var contacto = button.getAttribute('data-contacto')
+      var correo = button.getAttribute('data-correo')
+      // 
+      // 
       //
-      // Update the modal's content.
+      // 
       var modalTitle = exampleModal.querySelector('.modal-title')
       var modalBodyid = exampleModal.querySelector('#id')
-      var modalBodymarca = exampleModal.querySelector('#marca')
-      var modalBodysubmarca = exampleModal.querySelector('#submarca')
-      var modalBodytipo = exampleModal.querySelector('#tipo')
-      var modalBodymodelo = exampleModal.querySelector('#modelo')
-      var modalBodycolor = exampleModal.querySelector('#color')
-      var modalBodyplacas = exampleModal.querySelector('#placas')
-      var modalBodyserie = exampleModal.querySelector('#serie')
-      var modalBodynumero = exampleModal.querySelector('#numero')
+      var modalBodynombre = exampleModal.querySelector('#nombre')
+      var modalBodygrupo = exampleModal.querySelector('#grupo')
+      var modalBodyfamilia = exampleModal.querySelector('#familia')
+      var modalBodyubicacion = exampleModal.querySelector('#ubicacion')
+      var modalBodycontacto = exampleModal.querySelector('#contacto')
+      var modalBodycorreo = exampleModal.querySelector('#correo')
 
-      modalTitle.textContent = 'Editar vehiculo'
+      modalTitle.textContent = 'Editar proveedor'
       modalBodyid.value = id
-      modalBodymarca.value = marca
-      modalBodysubmarca.value = submarca
-      modalBodytipo.value = tipo
-      modalBodymodelo.value = modelo
-      modalBodycolor.value = color
-      modalBodyplacas.value = placas
-      modalBodyserie.value = serie
-      modalBodynumero.value = numero
+      modalBodynombre.value = nombre
+      modalBodygrupo.value = grupo
+      modalBodyfamilia.value = familia
+      modalBodyubicacion.value = ubicacion
+      modalBodycontacto.value = contacto
+      modalBodycorreo.value = correo
+
     })
   </script>
 

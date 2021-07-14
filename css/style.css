@@ -628,6 +628,7 @@ h1, h2, h3, h4, h5,
   .intro-section, .intro-section .container > .row {
     height: 100vh;
     min-height: 900px; }
+   
   .intro-section.single-cover, .intro-section.single-cover .container > .row {
     height: 20vh;
     min-height: 400px; }
