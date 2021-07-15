@@ -26,7 +26,7 @@
 
   <link rel="stylesheet" href="css/aos.css">
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style2.css">
 
   <link rel="stylesheet" href="css/hover.css">
 
@@ -36,7 +36,7 @@
 
 </head>
 
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300"  style="background-color: #6e80cf;">
 
   <div class="site-wrap">
 
@@ -109,43 +109,27 @@
       <div class="slide-1" style="background-image: url('images/carretera.jpg');" data-stellar-background-ratio="0.5">
         <div class="container ">
 
-          <div class="row  align-items-center">
+          <div class="row  align-items-center site-section ">
 
+            <div class="form-group">
+              <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Buscar vehiculo...">
+            </div>
 
+            <?php include 'php/consulta.php';
+            while ($mostrar = mysqli_fetch_array($ejecutarrol)) { ?>
 
-              <?php
-
-              include 'php/conn.php';
-
-              $profesor = "SELECT * FROM vehiculos ";
-              $resultadop = mysqli_query($cone, $profesor);
-
-              while ($mostrar = mysqli_fetch_array($resultadop)) {
-
-              ?>
-
-                <div class="col-lg-4 mb-4 align-items-center ">
-                  <div class="card" style="width: 18rem;">
-                    <img src="data:image/jpg;base64,<?php echo base64_encode($mostrar['imagen']); ?>" class="card-img-top " alt="..." width="300" height="230">
-                    <div class="card-body">
-                      <h5 class="card-title"><?php echo $mostrar['marca'] ?></h5>
-                      <h6 class="card-text font-weight-normal"><?php echo $mostrar['submarca'] ?></h6>
-                      <a href="" class="btn btn-primary">ver datos</a>
-
-                    </div>
+              <div class="col-lg-4 mb-3 align-items-center " id="mytable">
+                <div class="card" style="width: 20rem;">
+                  <img src="data:image/jpg;base64,<?php echo base64_encode($mostrar['imagen']); ?>" class="card-img-top " alt="..." width="280" height="190">
+                  <div class="card-body">
+                    <h5 class="card-title"><?php echo $mostrar['marca'] ?></h5>
+                    <h6 class="card-text font-weight-normal"><?php echo $mostrar['submarca'] ?></h6>
+                    <a href="" class="btn btn-primary">ver datos</a>
                   </div>
                 </div>
-              <?php
+              </div>
 
-              }
-              ?>
-
-          
-
-
-
-
-
+            <?php } ?>
 
           </div>
         </div>
@@ -171,6 +155,22 @@
 
 
   <script src="js/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $("#search").keyup(function() {
+        _this = this;
+
+        $.each($("#mytable div "), function() {
+          if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+            $(this).hide();
+          else
+            $(this).show();
+        });
+      });
+
+    });
+  </script>
 
 </body>
 
