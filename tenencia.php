@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Evaluacion</title>
+  <title>Control Vehícular</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -49,18 +49,19 @@
 
       <div class="container-fluid">
         <div class="d-flex align-items-center">
-          <div class="site-logo mr-auto w-26"><a href="index.html">BIOIN</a></div>
+          <div class="site-logo mr-auto w-26"><a href="index.php">BIOIN</a></div>
 
           <div class="mx-auto text-center">
             <nav class=" navbar site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="index.php" class="nav-link">Inicio</a></li>
-                <li><a href="vehiculos.php" class="nav-link">Vehículos</a></li>
-                <li><a href="proveedor.php" class="nav-link">Proveedores</a></li>
+                <li><a href="vehiculos.php" class="nav-link">Registro Vehículos</a></li>
+                <li><a href="cartas.php" class="nav-link">Informacion Vehículos</a></li>
+
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                   Modulos
+                    Modulos de vehiculo
                   </a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="placas.php">Placas</a>
@@ -73,13 +74,14 @@
 
                   </div>
                 </li>
+                <li><a href="proveedor.php" class="nav-link">Proveedores</a></li>
               </ul>
 
 
 
             </nav>
 
-           
+
 
 
 
@@ -122,8 +124,6 @@
                           <th>Eliminar</th>
                           <th>Modificar</th>
 
-
-
                         </tr>
                       </thead>
                       <tbody>
@@ -149,7 +149,7 @@
                             <td><?php echo $mostrar['estatus'] ?></td>
 
 
-                            <td><a class="btn btn-danger" href="php/tenencia/eliminar_tenencia.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
+                            <td><a class="btn btn-danger eliminar" href="php/tenencia/eliminar_tenencia.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
                               </a></td>
                             <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editartenencia" data-id="<?php echo $mostrar['id'] ?>" data-vehiculo="<?php echo $mostrar['id_vehiculo'] ?>" data-tenencia="<?php echo $mostrar['tenencia'] ?>" data-pago="<?php echo $mostrar['pago'] ?>"><i class="icon-edit"></i></button></td>
                           </tr>
@@ -161,17 +161,16 @@
                       </tbody>
                     </table>
                   </div>
-
                 </div>
 
-                < </div>
               </div>
             </div>
-
           </div>
+
         </div>
       </div>
     </div>
+  </div>
 
   </div>
 
@@ -201,7 +200,7 @@
                     <?php foreach ($vehiculos as $opcionesv) :   ?>
 
                       <option value="<?php echo $opcionesv["id_vehiculo"] ?>">
-                      <?php echo $opcionesv["marca"] ?>, con placas: <?php echo $opcionesv["placas"] ?>
+                        <?php echo $opcionesv["marca"] ?>, con placas: <?php echo $opcionesv["placas"] ?>
                       </option>
 
                     <?php endforeach ?>
@@ -218,7 +217,7 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                  <label for="validationDefaultUsername">pago</label>
+                  <label for="validationDefaultUsername">Pago</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">$</span>
@@ -277,7 +276,7 @@
 
               <div class="row">
 
-              <div class="form-group col-md-3">
+                <div class="form-group col-md-3">
                   <label for="" class="col-form-label">ID</label>
                   <input type="text" name="id" id="id" class="form-control" readonly="readonly">
                 </div>
@@ -290,7 +289,7 @@
                     <?php foreach ($vehiculos as $opcionesv) :   ?>
 
                       <option value="<?php echo $opcionesv["id_vehiculo"] ?>">
-                      <?php echo $opcionesv["marca"] ?>, con placas: <?php echo $opcionesv["placas"] ?>
+                        <?php echo $opcionesv["marca"] ?>, con placas: <?php echo $opcionesv["placas"] ?>
                       </option>
 
                     <?php endforeach ?>
@@ -307,7 +306,7 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                  <label for="validationDefaultUsername">pago</label>
+                  <label for="validationDefaultUsername">Pago</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">$</span>
@@ -367,6 +366,7 @@
 
   <script src="js/main.js"></script>
   <script src="dist/js/jspdf.plugin.autotable.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!--Buscador -->
   <script>
@@ -415,6 +415,29 @@
       modalBodytenencia.value = tenencia
       modalBodypago.value = pago
 
+
+    })
+  </script>
+  <!-- Alerta -->
+  <script type="text/javascript">
+    $('.eliminar').on('click', function(e) {
+      e.preventDefault();
+      const href = $(this).attr('href')
+
+      swal.fire({
+        title: 'Desea eliminar el registro?',
+        type: 'warning',
+        icon: 'warning',
+        showCancelButton: true,
+        CancelButtonColor: '#2E2E2E',
+        confirmButtonColor: '#B40404',
+        confirmButtonText: 'Eliminar',
+
+      }).then((result) => {
+        if (result.value) {
+          document.location.href = href;
+        }
+      })
 
     })
   </script>

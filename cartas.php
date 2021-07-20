@@ -30,13 +30,15 @@
 
   <link rel="stylesheet" href="css/hover.css">
 
+  <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 
 </head>
 
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300"  style="background-color: #6e80cf;">
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" style="background-color: #6e80cf;">
 
   <div class="site-wrap">
 
@@ -54,18 +56,19 @@
 
       <div class="container-fluid">
         <div class="d-flex align-items-center">
-          <div class="site-logo mr-auto w-26"><a href="index.html">BIOIN</a></div>
+          <div class="site-logo mr-auto w-26"><a href="index.php">BIOIN</a></div>
 
           <div class="mx-auto text-center">
             <nav class=" navbar site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="index.php" class="nav-link">Inicio</a></li>
-                <li><a href="vehiculos.php" class="nav-link">Vehículos</a></li>
-                <li><a href="proveedor.php" class="nav-link">Proveedores</a></li>
+                <li><a href="vehiculos.php" class="nav-link">Registro Vehículos</a></li>
+                <li><a href="cartas.php" class="nav-link">Informacion Vehículos</a></li>
+
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Modulos
+                    Modulos de vehiculo
                   </a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="placas.php">Placas</a>
@@ -78,34 +81,18 @@
 
                   </div>
                 </li>
+                <li><a href="proveedor.php" class="nav-link">Proveedores</a></li>
               </ul>
-
-
-
             </nav>
-
-
-
-
-
           </div>
-
           <div class="ml-auto w-26">
             <a href="" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
           </div>
         </div>
       </div>
-
     </header>
 
-
-
-
-
-
     <div class="intro-section" id="home-section">
-
-
       <div class="slide-1" style="background-image: url('images/carretera.jpg');" data-stellar-background-ratio="0.5">
         <div class="container ">
 
@@ -115,21 +102,26 @@
               <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Buscar vehiculo...">
             </div>
 
-            <?php include 'php/consulta.php';
-            while ($mostrar = mysqli_fetch_array($ejecutarrol)) { ?>
+            <div class="cajapadre">
+              <?php include 'php/consulta.php';
+              while ($mostrar = mysqli_fetch_array($ejecutarrol)) { ?>
 
-              <div class="col-lg-4 mb-3 align-items-center " id="mytable">
-                <div class="card" style="width: 20rem;">
-                  <img src="data:image/jpg;base64,<?php echo base64_encode($mostrar['imagen']); ?>" class="card-img-top " alt="..." width="280" height="190">
-                  <div class="card-body">
-                    <h5 class="card-title"><?php echo $mostrar['marca'] ?></h5>
-                    <h6 class="card-text font-weight-normal"><?php echo $mostrar['submarca'] ?></h6>
-                    <a href="" class="btn btn-primary">ver datos</a>
+                <div class="caja" id="mytable">
+                  <div class="card dis">
+                    <img src="data:image/jpg;base64,<?php echo base64_encode($mostrar['imagen']); ?>" class="card-img-top foto" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"><?php echo $mostrar['marca'] ?></h5>
+                      <h6 class="card-text font-weight-normal"><?php echo $mostrar['submarca'] ?>   <?php echo $mostrar['placas'] ?></h6>
+                      <a class="btn btn-primary" href="informacionv.php?id=<?php echo $mostrar['id_vehiculo'] ?>">
+                        ver datos
+                      </a>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-            <?php } ?>
+              <?php } ?>
+            </div>
 
           </div>
         </div>
@@ -137,7 +129,6 @@
     </div>
 
   </div>
-
 
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -152,6 +143,7 @@
   <script src="js/aos.js"></script>
   <script src="js/jquery.fancybox.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
+  <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 
 
   <script src="js/main.js"></script>
@@ -171,6 +163,16 @@
 
     });
   </script>
+
+  <script>
+    (function($) {
+      $(window).on("load", function() {
+        $(".cajapadre").mCustomScrollbar();
+      });
+    })(jQuery);
+  </script>
+
+  
 
 </body>
 

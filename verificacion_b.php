@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Evaluacion</title>
+  <title>Control Vehícular</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -47,51 +47,45 @@
 
     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
 
-      <div class="container-fluid">
-        <div class="d-flex align-items-center">
-          <div class="site-logo mr-auto w-26"><a href="index.html">BIOIN</a></div>
+<div class="container-fluid">
+  <div class="d-flex align-items-center">
+    <div class="site-logo mr-auto w-26"><a href="index.html">BIOIN</a></div>
 
-          <div class="mx-auto text-center">
-            <nav class=" navbar site-navigation position-relative text-right" role="navigation">
-              <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
-                <li><a href="index.php" class="nav-link">Inicio</a></li>
-                <li><a href="vehiculos.php" class="nav-link">Vehículos</a></li>
-                <li><a href="proveedor.php" class="nav-link">Proveedores</a></li>
+    <div class="mx-auto text-center">
+      <nav class=" navbar site-navigation position-relative text-right" role="navigation">
+        <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
+          <li><a href="index.php" class="nav-link">Inicio</a></li>
+          <li><a href="vehiculos.php" class="nav-link">Registro Vehículos</a></li>
+          <li><a href="cartas.php" class="nav-link">Informacion Vehículos</a></li>
+         
 
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                   Modulos
-                  </a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="placas.php">Placas</a>
-                    <a class="dropdown-item" href="poliza.php">Poliza</a>
-                    <a class="dropdown-item" href="tenencia.php">Tenencia</a>
-                    <a class="dropdown-item" href="verificacion_a.php">verificacion A</a>
-                    <a class="dropdown-item" href="verificacion_b.php">verificacion B</a>
-                    <a class="dropdown-item" href="verificacion_federal.php">Verificacion federal</a>
-                    <a class="dropdown-item" href="fisico_mecanico.php">fisico mecanico</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+             Modulos de vehiculo
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="placas.php">Placas</a>
+              <a class="dropdown-item" href="poliza.php">Poliza</a>
+              <a class="dropdown-item" href="tenencia.php">Tenencia</a>
+              <a class="dropdown-item" href="verificacion_a.php">verificacion A</a>
+              <a class="dropdown-item" href="verificacion_b.php">verificacion B</a>
+              <a class="dropdown-item" href="verificacion_federal.php">Verificacion federal</a>
+              <a class="dropdown-item" href="fisico_mecanico.php">fisico mecanico</a>
 
-                  </div>
-                </li>
-              </ul>
+            </div>
+          </li>
+          <li><a href="proveedor.php" class="nav-link">Proveedores</a></li>
+        </ul>
+      </nav>
+    </div>
 
+    <div class="ml-auto w-26">
+      <a href="" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
+    </div>
+  </div>
+</div>
 
-
-            </nav>
-
-           
-
-
-
-          </div>
-
-          <div class="ml-auto w-26">
-            <a href="" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
-          </div>
-        </div>
-      </div>
-
-    </header>
+</header>
 
     <div class="intro-section" id="home-section">
 
@@ -120,9 +114,6 @@
                           <th>Estatus</th>
                           <th>Eliminar</th>
                           <th>Modificar</th>
-
-
-
                         </tr>
                       </thead>
                       <tbody>
@@ -145,22 +136,19 @@
                             <td><?php echo $mostrar['placas'] ?></td>
                             <td><?php echo $mostrar['fecha'] ?></td>
                             <td><?php echo $mostrar['estatus'] ?></td>
-                            <td><a class="btn btn-danger" href="php/verificacion_a/eliminar_verificacion_a.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
+                            <td><a class="btn btn-danger eliminar" href="php/verificacion_a/eliminar_verificacion_a.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
                               </a></td>
                             <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarverificacion" data-id="<?php echo $mostrar['id'] ?>" data-vehiculo="<?php echo $mostrar['id_vehiculo'] ?>" data-fecha="<?php echo $mostrar['fecha'] ?>"><i class="icon-edit"></i></button></td>
                           </tr>
 
-                        <?php
-
-                        }
-                        ?>
+                        <?php   }  ?>
                       </tbody>
                     </table>
                   </div>
 
                 </div>
 
-                < </div>
+                 </div>
               </div>
             </div>
 
@@ -222,12 +210,6 @@
                     <input type="radio" class="btn-check" name="estatus" value="vencidas" id="danger-outlined" autocomplete="off">
                     <label class="btn btn-outline-danger" for="danger-outlined">vencidas</label>
                   </div>
-
-
-
-
-
-
                 </div>
               </div>
 
@@ -290,7 +272,7 @@
                   <input type="date" name="fecha" id="fecha" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Placas vigentes</label>
+                  <label for="" class="col-form-label">Estatus</label>
 
 
                   <div class="form-group ">
@@ -343,7 +325,7 @@
 
   <script src="js/main.js"></script>
   <script src="dist/js/jspdf.plugin.autotable.min.js"></script>
-
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!--Buscador -->
   <script>
     $(document).ready(function() {
@@ -391,6 +373,29 @@
       modalBodyfecha.value = fecha
       
       
+    })
+  </script>
+  <!-- Alerta -->
+  <script type="text/javascript">
+    $('.eliminar').on('click', function(e) {
+      e.preventDefault();
+      const href = $(this).attr('href')
+
+      swal.fire({
+        title: 'Desea eliminar el registro?',
+        type: 'warning',
+        icon: 'warning',
+        showCancelButton: true,
+        CancelButtonColor:'#2E2E2E',
+        confirmButtonColor: '#B40404',
+        confirmButtonText: 'Eliminar',
+
+      }).then((result)=>{
+        if(result.value){
+          document.location.href= href;
+        }
+      })
+
     })
   </script>
 </body>

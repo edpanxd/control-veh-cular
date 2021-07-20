@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-  <title>Evaluacion</title>
+  <title>Control Vehícular</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -49,18 +49,19 @@
 
       <div class="container-fluid">
         <div class="d-flex align-items-center">
-          <div class="site-logo mr-auto w-26"><a href="index.html">BIOIN</a></div>
+          <div class="site-logo mr-auto w-26"><a href="index.php">BIOIN</a></div>
 
           <div class="mx-auto text-center">
             <nav class=" navbar site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="index.php" class="nav-link">Inicio</a></li>
-                <li><a href="vehiculos.php" class="nav-link">Vehículos</a></li>
-                <li><a href="proveedor.php" class="nav-link">Proveedores</a></li>
+                <li><a href="vehiculos.php" class="nav-link">Registro Vehículos</a></li>
+                <li><a href="cartas.php" class="nav-link">Informacion Vehículos</a></li>
+
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                   Modulos
+                    Modulos de vehiculo
                   </a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="placas.php">Placas</a>
@@ -73,13 +74,14 @@
 
                   </div>
                 </li>
+                <li><a href="proveedor.php" class="nav-link">Proveedores</a></li>
               </ul>
 
 
 
             </nav>
 
-           
+
 
 
 
@@ -142,7 +144,7 @@
                             <td><?php echo $mostrar['placas'] ?></td>
                             <td><?php echo $mostrar['vencimiento'] ?></td>
                             <td><?php echo $mostrar['estatus'] ?></td>
-                            <td><a class="btn btn-danger" href="php/placas/eliminar_placas.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
+                            <td><a class="btn btn-danger eliminar" href="php/placas/eliminar_placas.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
                               </a></td>
                             <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarPlacas" data-id="<?php echo $mostrar['id'] ?>" data-vehiculo="<?php echo $mostrar['id_vehiculo'] ?>" data-vencimiento="<?php echo $mostrar['vencimiento'] ?>"><i class="icon-edit"></i></button></td>
                           </tr>
@@ -157,7 +159,7 @@
 
                 </div>
 
-                < </div>
+                </div>
               </div>
             </div>
 
@@ -220,12 +222,12 @@
                     <label class="btn btn-outline-danger" for="danger-outlined">vencidas</label>
                   </div>
 
-
-
-
-
-
                 </div>
+                <div class=" mb-3">
+                <label for="" class="col-form-label">Archivo</label>
+                <input type="file" name="archivo" class="form-control" required>
+                <div class="invalid-feedback">No selecciono el documento</div>
+              </div>
               </div>
 
 
@@ -266,13 +268,13 @@
 
                 <div class="form-group col-md-12">
 
-                  <select class="form-control" name="vehiculo" id="vehiculo"  >
-                    <option ></option>
+                  <select class="form-control" name="vehiculo" id="vehiculo">
+                    <option></option>
                     <?php include 'php/Vehiculo/consultaV.php'; ?>
                     <?php foreach ($vehiculos as $opcionesv) :   ?>
 
                       <option value="<?php echo $opcionesv["id_vehiculo"] ?>">
-                      <?php echo $opcionesv["marca"] ?>, con placas: <?php echo $opcionesv["placas"] ?>
+                        <?php echo $opcionesv["marca"] ?>, con placas: <?php echo $opcionesv["placas"] ?>
                       </option>
 
                     <?php endforeach ?>
@@ -291,7 +293,7 @@
 
 
                   <div class="form-group ">
-                    <input type="radio" class="btn-check" name="estatus" id="success-outline" value="vigentes" autocomplete="off" >
+                    <input type="radio" class="btn-check" name="estatus" id="success-outline" value="vigentes" autocomplete="off">
                     <label class="btn btn-outline-success" for="success-outline">Vigentes</label>
 
                     <input type="radio" class="btn-check" name="estatus" value="vencidas" id="danger-outline" autocomplete="off">
@@ -340,7 +342,7 @@
 
   <script src="js/main.js"></script>
   <script src="dist/js/jspdf.plugin.autotable.min.js"></script>
-
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!--Buscador -->
   <script>
     $(document).ready(function() {
@@ -368,7 +370,7 @@
       var id = button.getAttribute('data-id')
       var vehiculo = button.getAttribute('data-vehiculo')
       var vencimiento = button.getAttribute('data-vencimiento')
-      
+
       //  
       //
       //
@@ -377,7 +379,7 @@
       var modalBodyid = exampleModal.querySelector('#id')
       var modalBodyvehiculo = exampleModal.querySelector('#vehiculo')
       var modalBodyvencimiento = exampleModal.querySelector('#fecha')
-      
+
       //
       //
       //
@@ -386,8 +388,31 @@
       modalBodyid.value = id
       modalBodyvehiculo.value = vehiculo
       modalBodyvencimiento.value = vencimiento
-      
-      
+
+
+    })
+  </script>
+<!-- Alerta -->
+  <script type="text/javascript">
+    $('.eliminar').on('click', function(e) {
+      e.preventDefault();
+      const href = $(this).attr('href')
+
+      swal.fire({
+        title: 'Desea eliminar el registro?',
+        type: 'warning',
+        icon: 'warning',
+        showCancelButton: true,
+        CancelButtonColor:'#2E2E2E',
+        confirmButtonColor: '#B40404',
+        confirmButtonText: 'Eliminar',
+
+      }).then((result)=>{
+        if(result.value){
+          document.location.href= href;
+        }
+      })
+
     })
   </script>
 </body>

@@ -51,21 +51,22 @@
 
       <div class="container-fluid">
         <div class="d-flex align-items-center">
-          <div class="site-logo mr-auto w-26"><a href="index.html">BIOIN</a></div>
+          <div class="site-logo mr-auto w-26"><a href="index.php">BIOIN</a></div>
 
           <div class="mx-auto text-center">
             <nav class=" navbar site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="index.php" class="nav-link">Inicio</a></li>
-                <li><a href="vehiculos.php" class="nav-link">Vehículos</a></li>
-                <li><a href="proveedor.php" class="nav-link">Proveedores</a></li>
+                <li><a href="vehiculos.php" class="nav-link">Registro Vehículos</a></li>
+                <li><a href="cartas.php" class="nav-link">Informacion Vehículos</a></li>
+               
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                   Modulos
+                   Modulos de vehiculo
                   </a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="correo.php">correo</a>
+                    <a class="dropdown-item" href="placas.php">Placas</a>
                     <a class="dropdown-item" href="poliza.php">Poliza</a>
                     <a class="dropdown-item" href="tenencia.php">Tenencia</a>
                     <a class="dropdown-item" href="verificacion_a.php">verificacion A</a>
@@ -75,6 +76,7 @@
 
                   </div>
                 </li>
+                <li><a href="proveedor.php" class="nav-link">Proveedores</a></li>
               </ul>
 
 
@@ -117,12 +119,12 @@
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th>nombre</th>
-                          <th>grupo</th>
-                          <th>familia</th>
-                          <th>ubicacion</th>
-                          <th>contacto</th>
-                          <th>correo</th>
+                          <th>Nombre</th>
+                          <th>Grupo</th>
+                          <th>Familia</th>
+                          <th>Ubicacion</th>
+                          <th>Contacto</th>
+                          <th>Correo</th>
                           <th>Eliminar</th>
                           <th>Modificar</th>
 
@@ -148,7 +150,7 @@
                             <td><?php echo $mostrar['ubicacion'] ?></td>
                             <td><?php echo $mostrar['contacto'] ?></td>
                             <td><?php echo $mostrar['correo'] ?></td>
-                            <td><a class="btn btn-danger" href="php/Vehiculo/eliminar_vehiculo.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
+                            <td><a class="btn btn-danger" href="php/proveedor/eliminar_proveedor.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
                               </a></td>
                             <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editar" data-id="<?php echo $mostrar['id'] ?>" data-nombre="<?php echo $mostrar['nombre'] ?>" data-grupo="<?php echo $mostrar['grupo'] ?>" data-familia="<?php echo $mostrar['familia'] ?>" data-ubicacion="<?php echo $mostrar['ubicacion'] ?>" data-contacto="<?php echo $mostrar['contacto'] ?>" data-correo="<?php echo $mostrar['correo'] ?>" data-serie="<?php echo $mostrar['serie'] ?>" data-numero="<?php echo $mostrar['numero_motor'] ?>"><i class="icon-edit"></i></button></td>
                           </tr>
@@ -160,17 +162,9 @@
                       </tbody>
                     </table>
                   </div>
-
-
-
-
-
-
                 </div>
-
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -314,49 +308,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Importar -->
-  <div class="modal fade" id="importar" tabindex="-1" role="dialog" aria-labelledby="usuario" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="usuario">Agregar nuevo Vehiculo</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <Form class="form" action="php/Vehiculo/registro_vehiculo.php" method="POST" enctype="multipart/form-data">
-
-          
-
-              
-                <div class=" mb-3">
-                  <input type="file" class="form-control" aria-label="Vehiculos" required>
-                  <div class="invalid-feedback">No selecciono el documento</div>
-                </div>
-
-              
-
-
-
-           
-
-            <div class="form-group mb-3">
-            <button type="submit" class="btn btn-primary">Guardar</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>
-            </div>
-            
-          </Form>
-        </div>
-        <div class="modal-footer">
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-
 
 
 

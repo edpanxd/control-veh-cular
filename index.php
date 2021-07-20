@@ -54,18 +54,19 @@
 
       <div class="container-fluid">
         <div class="d-flex align-items-center">
-          <div class="site-logo mr-auto w-26"><a href="index.html">BIOIN</a></div>
+          <div class="site-logo mr-auto w-26"><a href="index.php">BIOIN</a></div>
 
           <div class="mx-auto text-center">
             <nav class=" navbar site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="index.php" class="nav-link">Inicio</a></li>
-                <li><a href="vehiculos.php" class="nav-link">Vehículos</a></li>
-                <li><a href="proveedor.php" class="nav-link">Proveedores</a></li>
+                <li><a href="vehiculos.php" class="nav-link">Registro Vehículos</a></li>
+                <li><a href="cartas.php" class="nav-link">Informacion Vehículos</a></li>
+               
 
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                   Modulos
+                   Modulos de vehiculo
                   </a>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="placas.php">Placas</a>
@@ -78,6 +79,7 @@
 
                   </div>
                 </li>
+                <li><a href="proveedor.php" class="nav-link">Proveedores</a></li>
               </ul>
 
 
@@ -97,11 +99,6 @@
       </div>
 
     </header>
-
-
-
-
-
 
     <div class="intro-section" id="home-section">
 

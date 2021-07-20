@@ -635,13 +635,16 @@ h1, h2, h3, h4, h5,
   .intro-section h1 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: rgb(33, 197, 197);
+    color: rgb(247, 247, 247);
     text-align: center;
     justify-content: center;
   }
   .intro-section p {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 1.1rem; }
+    color: white;
+    font-size: 1.2rem;
+  font-family:monospace;
+  font-weight: bold;
+}
 
 .img-absolute {
   position: absolute;
@@ -693,11 +696,12 @@ h1, h2, h3, h4, h5,
   border-radius: 7px; }
 
 .site-section {
-  padding: 10em 0;
+  padding: 7em 0;
   position: relative; }
   @media (max-width: 991.98px) {
     .site-section {
-      padding: 15em 0; } }
+      padding: 15em 0;
+    padding-left: 10em 0; } }
 
 .cta a span {
   border-color: #7971ea;
@@ -1158,3 +1162,47 @@ h1, h2, h3, h4, h5,
             .table-wrapper-scroll-y {
             display: block;
             }
+
+            .cajapadre{
+              background: rgba(59, 63, 71, 0.7);
+              height: 500px;
+              
+            }
+            .caja {
+              width: 360px;
+              float: left;
+          }
+         
+          .dis{
+            padding: auto;
+            margin: 10px;
+          }
+          .foto{
+            width: 100px;
+            height: 160px;
+          }
+
+          .cajita{
+            background: rgba(59, 63, 71, 0.7);
+            height: 200px;
+            padding: auto;
+            
+          }
+          .fotito{
+            width: 250px;
+            height: 160px;
+            float: left;
+            padding-top: 10px;
+            height: auto;
+          }
+          .info{
+         
+            color: rgb(32, 32, 32);
+            float: left;
+           padding: 20px;
+           
+          
+          }
+          .bt{
+            align-items: flex-end;
+          }
