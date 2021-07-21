@@ -26,6 +26,8 @@
 
   <link rel="stylesheet" href="css/style.css">
 
+  <link rel="stylesheet" href="dist/css/select2.css">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
@@ -103,11 +105,10 @@
             <div class="col-12">
               <div class="row align-items-center">
                 <div class="col-xl-12 mb-4">
-                  <h1 data-aos="fade-up" data-aos-delay="100">Tenencia</h1>
+                <h1 data-aos="fade-up" data-aos-delay="100">Tenencia</h1>
                   <div class="mb-2">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarplacas">Agregar Tenencia</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregartenencia">Agregar Tenencia</button>
                   </div>
-
                   <div class="form-group">
                     <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Buscar placas...">
                   </div>
@@ -123,22 +124,15 @@
                           <th>Estatus</th>
                           <th>Eliminar</th>
                           <th>Modificar</th>
-
                         </tr>
                       </thead>
                       <tbody>
-
                         <?php
-
                         include 'php/consulta.php';
-
                         $suma = 0;
                         $numero = 1;
-
                         while ($mostrar = mysqli_fetch_array($tenenciaresultado)) {
-
-                          $suma = $numero + $suma;
-
+                        $suma = $numero + $suma;
                         ?>
                           <tr>
                             <td><?php echo $suma ?></td>
@@ -147,26 +141,18 @@
                             <td><?php echo $mostrar['tenencia'] ?></td>
                             <td>$ <?php echo $mostrar['pago'] ?></td>
                             <td><?php echo $mostrar['estatus'] ?></td>
-
-
-                            <td><a class="btn btn-danger eliminar" href="php/tenencia/eliminar_tenencia.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
+                            <td><a class="btn btn-danger eliminar" href="php/tenencia/eliminar_tenencia.php?id=<?php echo $mostrar['id'] ?>&url=<?php echo $mostrar['archivo'] ?>"><i class="icon-trash"></i>
                               </a></td>
                             <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editartenencia" data-id="<?php echo $mostrar['id'] ?>" data-vehiculo="<?php echo $mostrar['id_vehiculo'] ?>" data-tenencia="<?php echo $mostrar['tenencia'] ?>" data-pago="<?php echo $mostrar['pago'] ?>"><i class="icon-edit"></i></button></td>
                           </tr>
-
-                        <?php
-
-                        }
-                        ?>
+                        <?php } ?>
                       </tbody>
                     </table>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -177,7 +163,7 @@
 
   <!--Agregar tenencia -->
 
-  <div class="modal fade" id="agregarplacas" tabindex="-1" role="dialog" aria-labelledby="usuario" aria-hidden="true">
+  <div class="modal fade" id="agregartenencia" tabindex="-1" role="dialog" aria-labelledby="usuario" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -194,7 +180,7 @@
               <div class="row">
                 <div class="form-group col-md-12">
 
-                  <select class="form-control" name="vehiculo">
+                  <select class="form-control" id="pe" name="vehiculo">
                     <option disabled selected>Selecciona el vehiculo</option>
                     <?php include 'php/Vehiculo/consultaV.php'; ?>
                     <?php foreach ($vehiculos as $opcionesv) :   ?>
@@ -207,31 +193,22 @@
                   </select>
                 </div>
               </div>
-
-
               <div class="row">
-
                 <div class="form-group col-md-6">
                   <label class="col-form-label" for="">Tenencia</label>
-                  <input class="form-control" name="tenencia" type="text">
+                  <input class="form-control" name="tenencia" type="text" required>
                 </div>
-
                 <div class="form-group col-md-6">
                   <label for="validationDefaultUsername">Pago</label>
                   <div class="input-group">
                     <div class="input-group-prepend">
                       <span class="input-group-text">$</span>
                     </div>
-                    <input type="text" name="pago" class="form-control">
+                    <input type="text" name="pago" class="form-control" required>
                   </div>
                 </div>
-
-
-
                 <div class="form-group col-md-12">
                   <label for="" class="col-form-label">Estatus</label>
-
-
                   <div class="form-group col-md-12">
                     <input type="radio" class="btn-check" name="estatus" id="success-outlined" value="pagado" autocomplete="off">
                     <label class="btn btn-outline-success" for="success-outlined">Pagado</label>
@@ -239,10 +216,12 @@
                     <input type="radio" class="btn-check" name="estatus" value="pendiente" id="danger-outlined" autocomplete="off">
                     <label class="btn btn-outline-danger" for="danger-outlined">Pendiente</label>
                   </div>
-
-
                 </div>
-
+                <div class="custom-file mb-3">
+                  <label for="" class="custom-file-label" data-browse="Archivo PDF">Archivo</label>
+                  <input type="file" name="archivo" class="custom-file-input" required>
+                  <div class="invalid-feedback">No selecciono el documento</div>
+                </div>
               </div>
 
 
@@ -362,7 +341,7 @@
   <script src="js/aos.js"></script>
   <script src="js/jquery.fancybox.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
-
+  <script src="dist/js/select2.js"></script>
 
   <script src="js/main.js"></script>
   <script src="dist/js/jspdf.plugin.autotable.min.js"></script>
@@ -441,7 +420,13 @@
 
     })
   </script>
-
+<!--seleccion -->
+<script>
+    $('#pe').select2({
+        width: '100%',
+        dropdownParent: $('#agregartenencia')
+    });
+</script>
 </body>
 
 </html>

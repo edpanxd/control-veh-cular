@@ -25,6 +25,8 @@
 
   <link rel="stylesheet" href="css/style.css">
 
+  <link rel="stylesheet" href="dist/css/select2.css">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
@@ -94,7 +96,6 @@
     </header>
 
     <div class="intro-section" id="home-section">
-
       <div class="slide-1" style="background-image: url('images/carretera.jpg');" data-stellar-background-ratio="0.5">
         <div class="container">
           <div class="row align-items-center">
@@ -105,7 +106,6 @@
                   <div class="mb-2">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarverificacion">Agregar Verificacion</button>
                   </div>
-
                   <div class="form-group">
                     <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Buscar placas...">
                   </div>
@@ -123,18 +123,12 @@
                         </tr>
                       </thead>
                       <tbody>
-
                         <?php
-
                         include 'php/consulta.php';
-
                         $suma = 0;
                         $numero = 1;
-
                         while ($mostrar = mysqli_fetch_array($verificacion_aresultado)) {
-
                           $suma = $numero + $suma;
-
                         ?>
                           <tr>
                             <td><?php echo $suma ?></td>
@@ -142,29 +136,23 @@
                             <td><?php echo $mostrar['placas'] ?></td>
                             <td><?php echo $mostrar['fecha'] ?></td>
                             <td><?php echo $mostrar['estatus'] ?></td>
-                            <td><a class="btn btn-danger eliminar" href="php/verificacion_a/eliminar_verificacion_a.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
+                            <td><a class="btn btn-danger eliminar" href="php/verificacion_a/eliminar_verificacion_a.php?id=<?php echo $mostrar['id'] ?>&url=<?php echo $mostrar['archivo'] ?>"><i class="icon-trash"></i>
                               </a></td>
                             <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarverificacion" data-id="<?php echo $mostrar['id'] ?>" data-vehiculo="<?php echo $mostrar['id_vehiculo'] ?>" data-fecha="<?php echo $mostrar['fecha'] ?>"><i class="icon-edit"></i></button></td>
                           </tr>
 
-                        <?php
-
-                        }
-                        ?>
+                        <?php }   ?>
                       </tbody>
                     </table>
                   </div>
-
                 </div>
-
-                < </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </div>
+  </div>
 
   </div>
 
@@ -186,7 +174,7 @@
               <div class="row">
                 <div class="form-group col-md-12">
 
-                  <select class="form-control" name="vehiculo">
+                  <select class="form-control" id="pe" name="vehiculo">
                     <option disabled selected>Selecciona el vehiculo</option>
                     <?php include 'php/Vehiculo/consultaV.php'; ?>
                     <?php foreach ($vehiculos as $opcionesv) :   ?>
@@ -204,20 +192,26 @@
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="" class="col-form-label">Fecha</label>
-                  <input type="date" name="fecha" class="form-control">
+                  <input type="date" name="fecha" class="form-control" required>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="" class="col-form-label">Estatus</label>
 
 
                   <div class="form-group ">
-                    <input type="radio" class="btn-check" name="estatus" id="success-outlined" value="vigentes" autocomplete="off" >
+                    <input type="radio" class="btn-check" name="estatus" id="success-outlined" value="vigentes" autocomplete="off">
                     <label class="btn btn-outline-success" for="success-outlined">Vigentes</label>
 
                     <input type="radio" class="btn-check" name="estatus" value="vencidas" id="danger-outlined" autocomplete="off">
                     <label class="btn btn-outline-danger" for="danger-outlined">Vencidas</label>
                   </div>
                 </div>
+                <div class="custom-file mb-3">
+                  <label for="" class="custom-file-label" data-browse="Archivo PDF">Archivo</label>
+                  <input type="file" name="archivo" class="custom-file-input" required>
+                  <div class="invalid-feedback">No selecciono el documento</div>
+                </div>
+
               </div>
             </div>
 
@@ -234,7 +228,6 @@
   </div>
 
   <!-- Modal para editar-->
-
   <div class="modal fade" id="editarverificacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -311,7 +304,7 @@
   <script src="js/aos.js"></script>
   <script src="js/jquery.fancybox.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
-
+  <script src="dist/js/select2.js"></script>
 
   <script src="js/main.js"></script>
   <script src="dist/js/jspdf.plugin.autotable.min.js"></script>
@@ -376,18 +369,25 @@
         type: 'warning',
         icon: 'warning',
         showCancelButton: true,
-        CancelButtonColor:'#2E2E2E',
+        CancelButtonColor: '#2E2E2E',
         confirmButtonColor: '#B40404',
         confirmButtonText: 'Eliminar',
 
-      }).then((result)=>{
-        if(result.value){
-          document.location.href= href;
+      }).then((result) => {
+        if (result.value) {
+          document.location.href = href;
         }
       })
 
     })
   </script>
+  <!--seleccion -->
+  <script>
+    $('#pe').select2({
+        width: '100%',
+        dropdownParent: $('#agregarverificacion')
+    });
+</script>
 </body>
 
 </html>

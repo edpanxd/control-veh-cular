@@ -74,7 +74,7 @@
 
           <div class="row  align-items-center site-section ">
 
-            <div class="cajita">
+            <div class="cajita" data-aos="fade-down-right">
               <?php
               include 'php/conn.php';
               $id = $_GET['id'];
@@ -175,7 +175,7 @@
                         <td><?php echo $mostrar['poliza'] ?></td>
                         <td><?php echo $mostrar['seguro'] ?></td>
                         <td><?php echo $mostrar['vigencia'] ?></td>
-                        <td><a class="btn btn-primary" href=""><i class="icon-file"></i>
+                        <td><a class="btn btn-primary" href="php/poliza/pdfpoliza.php?id=<?php echo $mostrar['id'] ?>" target="_blank"><i class="icon-file"></i>
                           </a></td>
                        </tr>
 
@@ -198,18 +198,11 @@
                       <th>Pago</th>
                       <th>Estatus</th>
                       <th>Archivo</th>
-                  
-
-
-
                     </tr>
                   </thead>
                   <tbody>
 
                     <?php
-
-
-
                     $suma = 0;
                     $numero = 1;
                     $tenencia = "SELECT *FROM tenencia INNER JOIN vehiculos on 
@@ -227,7 +220,7 @@
                         <td><?php echo $mostrar['tenencia'] ?></td>
                         <td>$ <?php echo $mostrar['pago'] ?></td>
                         <td><?php echo $mostrar['estatus'] ?></td>
-                        <td><a class="btn btn-primary" href=""><i class="icon-file"></i>
+                        <td><a class="btn btn-primary" href="php/tenencia/pdftenencia.php?id=<?php echo $mostrar['id'] ?>" target="_blank"><i class="icon-file"></i>
                           </a></td>
                         </tr>
 
@@ -250,17 +243,11 @@
                       <th>Estatus</th>
                       <th>Archivo</th>
                    
-
-
-
                     </tr>
                   </thead>
                   <tbody>
 
                     <?php
-
-
-
                     $suma = 0;
                     $numero = 1;
                     $verificacion_a = "SELECT * FROM verificacion_a INNER JOIN vehiculos on 
@@ -277,7 +264,7 @@
                         <td><?php echo $mostrar['placas'] ?></td>
                         <td><?php echo $mostrar['fecha'] ?></td>
                         <td><?php echo $mostrar['estatus'] ?></td>
-                        <td><a class="btn btn-primary" href=""><i class="icon-file"></i>
+                        <td><a class="btn btn-primary" href="php/verificacion_a/pdfverificacian_a.php?id=<?php echo $mostrar['id'] ?>" target="_blank"><i class="icon-file"></i>
                           </a></td>
                        </tr>
 
@@ -299,18 +286,12 @@
                       <th>Fecha</th>
                       <th>Estatus</th>
                       <th>Archivo</th>
-                      
-
-
-
+                    
                     </tr>
                   </thead>
                   <tbody>
 
                     <?php
-
-
-
                     $suma = 0;
                     $numero = 1;
                     $verificacion_b = "SELECT * FROM verificacion_b INNER JOIN vehiculos on 
@@ -327,7 +308,7 @@
                         <td><?php echo $mostrar['placas'] ?></td>
                         <td><?php echo $mostrar['fecha'] ?></td>
                         <td><?php echo $mostrar['estatus'] ?></td>
-                        <td><a class="btn btn-primary" href=""><i class="icon-file"></i>
+                        <td><a class="btn btn-primary" href="php/verificacion_b/pdfverificacion_b.php?id=<?php echo $mostrar['id'] ?>" target="_blank"><i class="icon-file"></i>
                           </a></td>
                        </tr>
 
@@ -349,17 +330,11 @@
                       <th>Fecha</th>
                       <th>Estatus</th>
                       <th>Archivo</th>
-                   
-
-
-
                     </tr>
                   </thead>
                   <tbody>
 
                     <?php
-
-
 
                     $suma = 0;
                     $numero = 1;
@@ -377,7 +352,7 @@
                         <td><?php echo $mostrar['placas'] ?></td>
                         <td><?php echo $mostrar['fecha'] ?></td>
                         <td><?php echo $mostrar['estatus'] ?></td>
-                        <td><a class="btn btn-primary" href=""><i class="icon-file"></i>
+                        <td><a class="btn btn-primary" href="php/verificacion_federal/pdfverificacion_federal.php?id=<?php echo $mostrar['id'] ?>" target="_blank"><i class="icon-file"></i>
                           </a></td>
                         </tr>
 
@@ -399,17 +374,11 @@
                       <th>Fisico Mecanico</th>
                       <th>Fecha</th>
                       <th>Archivo</th>
-                   
-
-
-
                     </tr>
                   </thead>
                   <tbody>
 
                     <?php
-
-
 
                     $suma = 0;
                     $numero = 1;
@@ -427,7 +396,7 @@
                         <td><?php echo $mostrar['placas'] ?></td>
                         <td><?php echo $mostrar['mecanico'] ?></td>
                         <td><?php echo $mostrar['fecha'] ?></td>
-                        <td><a class="btn btn-primary" href=""><i class="icon-file"></i>
+                        <td><a class="btn btn-primary"  href="php/fisico_mecanico/pdffisico_mecanico.php?id=<?php echo $mostrar['id'] ?>" target="_blank"><i class="icon-file"></i>
                           </a></td>
                         </tr>
 

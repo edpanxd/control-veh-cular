@@ -151,54 +151,53 @@
           </button>
         </div>
         <div class="modal-body">
-          <Form class="form" action="php/Vehiculo/registro_vehiculo.php" method="POST" enctype="multipart/form-data">
+          <Form class="form"  action="php/Vehiculo/registro_vehiculo.php" method="POST" enctype="multipart/form-data">
             <div class="container-fluid">
               <div class="row">
                 <div class="form-group col-md-6">
-                  <label for="" class="col-form-label">Marca</label>
-                  <input type="text" name="marca" class="form-control">
+                  <label for="valido" class="col-form-label">Marca</label>
+                  <input type="text" name="marca" id="valido" class="form-control" required>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="" class="col-form-label">Submarca</label>
-                  <input type="text" name="submarca" class="form-control">
+                  <input type="text" name="submarca" class="form-control" required>
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="" class="col-form-label">Tipo</label>
-                  <input type="text" name="tipo" class="form-control">
+                  <input type="text" name="tipo" class="form-control" required>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="" class="col-form-label">Modelo</label>
-                  <input type="text" name="modelo" class="form-control">
+                  <input type="text" name="modelo" class="form-control" required>
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="" class="col-form-label">Color</label>
-                  <input type="text" name="color" class="form-control">
+                  <input type="text" name="color" class="form-control" required>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="" class="col-form-label">Placas</label>
-                  <input type="text" name="placas" class="form-control">
+                  <input type="text" name="placas" class="form-control" required>
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="" class="col-form-label">Serie</label>
-                  <input type="text" name="serie" class="form-control">
+                  <input type="text" name="serie" class="form-control" required>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="" class="col-form-label">Numero de Motor</label>
-                  <input type="text" name="numero_motor" class="form-control">
+                  <input type="text" name="numero_motor" class="form-control" required>
                 </div>
-              </div>
-              <div class=" mb-3">
+                <div class=" mb-3">
                 <label for="" class="col-form-label">Archivo</label>
                 <input type="file" name="imagen" class="form-control" aria-label="Vehiculos" required>
                 <div class="invalid-feedback">No selecciono el documento</div>
               </div>
-
+              </div>
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>

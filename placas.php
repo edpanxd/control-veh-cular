@@ -26,6 +26,8 @@
 
   <link rel="stylesheet" href="css/style.css">
 
+  <link rel="stylesheet" href="dist/css/select2.css">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
@@ -107,7 +109,6 @@
                   <div class="mb-2">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarplacas">Agregar placas</button>
                   </div>
-
                   <div class="form-group">
                     <input type="text" class="form-control pull-right" style="width:20%" id="search" placeholder="Buscar placas...">
                   </div>
@@ -144,7 +145,8 @@
                             <td><?php echo $mostrar['placas'] ?></td>
                             <td><?php echo $mostrar['vencimiento'] ?></td>
                             <td><?php echo $mostrar['estatus'] ?></td>
-                            <td><a class="btn btn-danger eliminar" href="php/placas/eliminar_placas.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
+
+                            <td><a class="btn btn-danger eliminar" href="php/placas/eliminar_placas.php?id=<?php echo $mostrar['id']; ?>&url=<?php echo $mostrar['archivo']; ?>"><i class="icon-trash"></i>
                               </a></td>
                             <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarPlacas" data-id="<?php echo $mostrar['id'] ?>" data-vehiculo="<?php echo $mostrar['id_vehiculo'] ?>" data-vencimiento="<?php echo $mostrar['vencimiento'] ?>"><i class="icon-edit"></i></button></td>
                           </tr>
@@ -156,17 +158,14 @@
                       </tbody>
                     </table>
                   </div>
-
-                </div>
-
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </div>
+  </div>
 
   </div>
 
@@ -177,7 +176,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="usuario">Agregar nuevo Vehiculo</h5>
+          <h5 class="modal-title" id="usuario">Agregar nuevas Placas</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -190,7 +189,7 @@
               <div class="row">
                 <div class="form-group col-md-12">
 
-                  <select class="form-control" name="vehiculo">
+                  <select class="form-control" id="pe" name="vehiculo">
                     <option disabled selected>Selecciona el vehiculo</option>
                     <?php include 'php/Vehiculo/consultaV.php'; ?>
                     <?php foreach ($vehiculos as $opcionesv) :   ?>
@@ -208,32 +207,25 @@
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="" class="col-form-label">Fecha</label>
-                  <input type="date" name="fecha" class="form-control">
+                  <input type="date" name="fecha" class="form-control" required>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="" class="col-form-label">Placas vigentes</label>
-
-
                   <div class="form-group ">
-                    <input type="radio" class="btn-check" name="estatus" id="success-outlined" value="vigentes" autocomplete="off" checked>
+                    <input type="radio" class="btn-check" name="estatus" id="success-outlined" value="vigentes" autocomplete="off">
                     <label class="btn btn-outline-success" for="success-outlined">Vigentes</label>
 
                     <input type="radio" class="btn-check" name="estatus" value="vencidas" id="danger-outlined" autocomplete="off">
                     <label class="btn btn-outline-danger" for="danger-outlined">vencidas</label>
                   </div>
-
                 </div>
-                <div class=" mb-3">
-                <label for="" class="col-form-label">Archivo</label>
-                <input type="file" name="archivo" class="form-control" required>
-                <div class="invalid-feedback">No selecciono el documento</div>
+                <div class="custom-file mb-3">
+                  <label for="" class="custom-file-label" data-browse="Archivo PDF">Archivo</label>
+                  <input type="file" name="archivo" class="custom-file-input" required>
+                  <div class="invalid-feedback">No selecciono el documento</div>
+                </div>
               </div>
-              </div>
-
-
             </div>
-
-
             <button type="submit" class="btn btn-primary">Guardar</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>
           </Form>
@@ -338,7 +330,7 @@
   <script src="js/aos.js"></script>
   <script src="js/jquery.fancybox.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
-
+  <script src="dist/js/select2.js"></script>
 
   <script src="js/main.js"></script>
   <script src="dist/js/jspdf.plugin.autotable.min.js"></script>
@@ -392,7 +384,7 @@
 
     })
   </script>
-<!-- Alerta -->
+  <!-- Alerta -->
   <script type="text/javascript">
     $('.eliminar').on('click', function(e) {
       e.preventDefault();
@@ -403,17 +395,24 @@
         type: 'warning',
         icon: 'warning',
         showCancelButton: true,
-        CancelButtonColor:'#2E2E2E',
+        CancelButtonColor: '#2E2E2E',
         confirmButtonColor: '#B40404',
         confirmButtonText: 'Eliminar',
 
-      }).then((result)=>{
-        if(result.value){
-          document.location.href= href;
+      }).then((result) => {
+        if (result.value) {
+          document.location.href = href;
         }
       })
 
     })
+  </script>
+  <!-- seleccion-->
+  <script>
+    $('#pe').select2({
+      width: '100%',
+      dropdownParent: $('#agregarplacas')
+    });
   </script>
 </body>
 

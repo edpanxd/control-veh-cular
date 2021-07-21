@@ -26,6 +26,8 @@
 
   <link rel="stylesheet" href="css/style.css">
 
+  <link rel="stylesheet" href="dist/css/select2.css">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
@@ -130,9 +132,7 @@
                         $suma = 0;
                         $numero = 1;
                         while ($mostrar = mysqli_fetch_array($verificacion_Mresultado)) {
-
                           $suma = $numero + $suma;
-
                         ?>
                           <tr>
                             <td><?php echo $suma ?></td>
@@ -140,7 +140,7 @@
                             <td><?php echo $mostrar['placas'] ?></td>
                             <td><?php echo $mostrar['mecanico'] ?></td>
                             <td><?php echo $mostrar['fecha'] ?></td>
-                            <td><a class="btn btn-danger eliminar" href="php/fisico_mecanico/eliminar_fisico_mecanico.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
+                            <td><a class="btn btn-danger eliminar" href="php/fisico_mecanico/eliminar_fisico_mecanico.php?id=<?php echo $mostrar['id'] ?>&url=<?php echo $mostrar['archivo'] ?>"><i class="icon-trash"></i>
                               </a></td>
                             <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarverificacion" data-id="<?php echo $mostrar['id'] ?>" data-vehiculo="<?php echo $mostrar['id_vehiculo'] ?>" data-mecanico="<?php echo $mostrar['mecanico'] ?>" data-fecha="<?php echo $mostrar['fecha'] ?>"><i class="icon-edit"></i></button></td>
                           </tr>
@@ -157,7 +157,7 @@
     </div>
   </div>
 
-  
+
 
 
 
@@ -175,19 +175,16 @@
           <Form class="form" action="php/fisico_mecanico/registro_fisico_mecanico.php" method="POST" enctype="multipart/form-data">
 
             <div class="container-fluid">
-
               <div class="row">
                 <div class="form-group col-md-12">
                   <label for="" class="col-form-label">Vehiculo</label>
-                  <select class="custom-select" name="vehiculo">
+                  <select class="custom-select" id="pe" name="vehiculo" >
                     <option disabled selected>Selecciona el vehiculo</option>
                     <?php include 'php/Vehiculo/consultaV.php'; ?>
                     <?php foreach ($vehiculos as $opcionesv) :   ?>
-
                       <option value="<?php echo $opcionesv["id_vehiculo"] ?>">
                         <?php echo $opcionesv["marca"] ?>
                       </option>
-
                     <?php endforeach ?>
                   </select>
                 </div>
@@ -196,13 +193,18 @@
               <div class="row">
                 <div class="form-group ">
                   <label for="" class="col-form-label">Fisico Mecanico</label>
-                  <input type="text" name="mecanico" class="form-control">
+                  <input type="text" name="mecanico" class="form-control" required>
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="" class="col-form-label">Fecha</label>
-                  <input type="date" name="fecha" class="form-control">
+                  <input type="date" name="fecha" class="form-control" required>
+                </div>
+                <div class="custom-file mb-3">
+                  <label for="" class="custom-file-label" data-browse="Archivo PDF">Archivo</label>
+                  <input type="file" name="archivo" class="custom-file-input" required>
+                  <div class="invalid-feedback">No selecciono el documento</div>
                 </div>
               </div>
             </div>
@@ -298,7 +300,7 @@
   <script src="js/aos.js"></script>
   <script src="js/jquery.fancybox.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
-
+  <script src="dist/js/select2.js"></script>
 
   <script src="js/main.js"></script>
   <script src="dist/js/jspdf.plugin.autotable.min.js"></script>
@@ -379,6 +381,14 @@
 
     })
   </script>
+
+  <!--seleccion -->
+  <script>
+    $('#pe').select2({
+        width: '100%',
+        dropdownParent: $('#agregarverificacion')
+    });
+</script>
 </body>
 
 </html>

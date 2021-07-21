@@ -110,8 +110,8 @@
 
             <div class="col-3 ">
               <div class="  zoom">
-                <img class="two-columns " src="images/RANGER.png" alt="" width="" height="">
-                <img class="two-columns " src="images/S10.png" alt="" width="" height="">
+                <img class="two-columns " data-aos="flip-left" src="images/RANGER.png" alt="" width="" height="">
+                <img class="two-columns " data-aos="flip-left"  src="images/S10.png" alt="" width="" height="">
               </div>
             </div>
 
@@ -125,8 +125,8 @@
 
             <div class="col-3">
               <div class="  zoom">
-                <img class="two-columns " src="images/HILUX.png" alt="" width="" height="">
-                <img class="two-columns " src="images/F350.png" alt="" width="" height="">
+                <img class="two-columns " data-aos="flip-right" src="images/HILUX.png" alt="" width="" height="">
+                <img class="two-columns " data-aos="flip-right" src="images/F350.png" alt="" width="" height="">
               </div>
             </div>
             

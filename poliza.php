@@ -26,6 +26,8 @@
 
   <link rel="stylesheet" href="css/style.css">
 
+  <link rel="stylesheet" href="dist/css/select2.css">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
@@ -105,7 +107,7 @@
                 <div class="col-xl-12 mb-4">
                   <h1 data-aos="fade-up" data-aos-delay="100">poliza</h1>
                   <div class="mb-2">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarplacas">Agregar poliza</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarpoliza">Agregar poliza</button>
                   </div>
 
                   <div class="form-group">
@@ -123,24 +125,15 @@
                           <th>Vigencia</th>
                           <th>Eliminar</th>
                           <th>Modificar</th>
-
-
-
                         </tr>
                       </thead>
                       <tbody>
-
                         <?php
-
                         include 'php/consulta.php';
-
                         $suma = 0;
                         $numero = 1;
-
                         while ($mostrar = mysqli_fetch_array($polizaresultado)) {
-
                           $suma = $numero + $suma;
-
                         ?>
                           <tr>
                             <td><?php echo $suma ?></td>
@@ -149,38 +142,29 @@
                             <td><?php echo $mostrar['poliza'] ?></td>
                             <td><?php echo $mostrar['seguro'] ?></td>
                             <td><?php echo $mostrar['vigencia'] ?></td>
-
-
-                            <td><a class="btn btn-danger eliminar" href="php/poliza/eliminar_poliza.php?id=<?php echo $mostrar['id'] ?>"><i class="icon-trash"></i>
+                            <td><a class="btn btn-danger eliminar" href="php/poliza/eliminar_poliza.php?id=<?php echo $mostrar['id'] ?>&url=<?php echo $mostrar['archivo'] ?>"><i class="icon-trash"></i>
                               </a></td>
                             <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editarpoliza" data-id="<?php echo $mostrar['id'] ?>" data-vehiculo="<?php echo $mostrar['id_vehiculo'] ?>" data-poliza="<?php echo $mostrar['poliza'] ?>" data-vigencia="<?php echo $mostrar['vigencia'] ?>"><i class="icon-edit"></i></button></td>
                           </tr>
-
-                        <?php
-
-                        }
-                        ?>
+                        <?php    } ?>
                       </tbody>
                     </table>
                   </div>
-
                 </div>
-
-                < </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </div>
+  </div>
 
   </div>
 
 
 
   <!-- Modal para agregar polizas-->
-  <div class="modal fade" id="agregarplacas" tabindex="-1" role="dialog" aria-labelledby="usuario" aria-hidden="true">
+  <div class="modal fade" id="agregarpoliza" tabindex="-1" role="dialog" aria-labelledby="usuario" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -197,7 +181,7 @@
               <div class="row">
                 <div class="form-group col-md-12">
 
-                  <select class="form-control" name="vehiculo">
+                  <select class="form-control" id="pe" name="vehiculo">
                     <option disabled selected>Selecciona el vehiculo</option>
                     <?php include 'php/Vehiculo/consultaV.php'; ?>
                     <?php foreach ($vehiculos as $opcionesv) :   ?>
@@ -216,7 +200,7 @@
 
                 <div class="form-group col-md-12">
                   <label class="col-form-label" for="">Poliza</label>
-                  <input class="form-control" name="poliza" type="text">
+                  <input class="form-control" name="poliza" type="text" required>
                 </div>
 
                 <div class="form-group col-md-6">
@@ -231,23 +215,19 @@
                     <label class="btn btn-outline-danger" for="danger-outlined">No activo</label>
                   </div>
 
-
-
-
-
-
                 </div>
 
                 <div class="form-group col-md-6">
                   <label for="" class="col-form-label">vigencia</label>
-                  <input type="date" name="fecha" class="form-control">
+                  <input type="date" name="fecha" class="form-control" required>
                 </div>
               </div>
-
-
+              <div class="custom-file mb-3">
+                <label for="" class="custom-file-label" data-browse="Archivo PDF">Archivo</label>
+                <input type="file" name="archivo" class="custom-file-input" required>
+                <div class="invalid-feedback">No selecciono el documento</div>
+              </div>
             </div>
-
-
             <button type="submit" class="btn btn-primary">Guardar</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>
           </Form>
@@ -356,7 +336,7 @@
   <script src="js/aos.js"></script>
   <script src="js/jquery.fancybox.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
-
+  <script src="dist/js/select2.js"></script>
 
   <script src="js/main.js"></script>
   <script src="dist/js/jspdf.plugin.autotable.min.js"></script>
@@ -435,6 +415,13 @@
       })
 
     })
+  </script>
+  <!-- seleccion-->
+  <script>
+    $('#pe').select2({
+      width: '100%',
+      dropdownParent: $('#agregarpoliza')
+    });
   </script>
 </body>
 
