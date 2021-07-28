@@ -201,6 +201,10 @@
                   <label for="" class="col-form-label">Fecha</label>
                   <input type="date" name="fecha" class="form-control" required>
                 </div>
+                <div class="form-group">
+                      <label for="" class="col-form-label">Nombre del archivo</label>
+                      <input type="text" class="form-control" name="nombre" required>
+                </div>
                 <div class="custom-file mb-3">
                   <label for="" class="custom-file-label" data-browse="Archivo PDF">Archivo</label>
                   <input type="file" name="archivo" class="custom-file-input" required>

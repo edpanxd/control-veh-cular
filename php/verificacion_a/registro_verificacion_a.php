@@ -5,7 +5,7 @@ include '../conn.php';
 $id⁪ = $_POST["vehiculo"];
 $fecha = $_POST["fecha"];
 $estatus = $_POST["estatus"];
-
+$nombre=$_POST["nombre"];
 
 if ($_FILES["archivo"]) {
     $nombre_base = basename($_FILES["archivo"]["name"]);
@@ -14,8 +14,8 @@ if ($_FILES["archivo"]) {
    
     if ($ruta) {
 
-        $insertar_placas = "INSERT INTO verificacion_a(vehiculo_id, fecha, estatus,archivo)
-                                VALUES ('$id⁪', '$fecha', '$estatus', '$ruta')";
+        $insertar_placas = "INSERT INTO verificacion_a(vehiculo_id, fecha, estatus, nombre, archivo)
+                                VALUES ('$id⁪', '$fecha', '$estatus', '$nombre','$ruta')";
 
         $resultadoP = mysqli_query($cone, $insertar_placas);
         if (!$resultadoP) {

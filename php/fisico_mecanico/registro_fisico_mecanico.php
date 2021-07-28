@@ -5,7 +5,7 @@ include '../conn.php';
 $id⁪ = $_POST["vehiculo"];
 $mecanico = $_POST["mecanico"];
 $fecha = $_POST["fecha"];
-
+$nombre=$_POST["nombre"];
 
 if ($_FILES["archivo"]) {
     $nombre_base = basename($_FILES["archivo"]["name"]);
@@ -14,8 +14,8 @@ if ($_FILES["archivo"]) {
     
     if ($ruta) {
 
-        $insertar_verificacion_m = "INSERT INTO fisico_mecanico(vehiculo_id, mecanico, fecha, archivo)
-                                        VALUES ('$id⁪', '$mecanico', '$fecha', '$ruta')";
+        $insertar_verificacion_m = "INSERT INTO fisico_mecanico(vehiculo_id, mecanico, fecha,nombre, archivo)
+                                        VALUES ('$id⁪', '$mecanico', '$fecha','$nombre', '$ruta')";
 
         $resultadoP = mysqli_query($cone, $insertar_verificacion_m);
         if (!$resultadoP) {

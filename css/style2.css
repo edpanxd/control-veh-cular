@@ -642,7 +642,7 @@ h1, h2, h3, h4, h5,
   .intro-section p {
     color: white;
     font-size: 1.2rem;
-  font-family:monospace;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-weight: bold;
 }
 
@@ -1165,7 +1165,7 @@ h1, h2, h3, h4, h5,
 
             .cajapadre{
               background: rgba(59, 63, 71, 0.7);
-              height: 500px;
+              height: 700px;
               
             }
             .caja {
@@ -1180,20 +1180,23 @@ h1, h2, h3, h4, h5,
           .foto{
             width: 100px;
             height: 160px;
+            align-self: center;
           }
 
           .cajita{
-            background: rgba(59, 63, 71, 0.7);
-            height: 200px;
+            background:rgb(26, 25, 25);
+            height: 300px;
             padding: auto;
             
           }
           .fotito{
             width: 250px;
-            height: 160px;
-            float: left;
+            height: 250px;
+            margin:10px auto;
+            display:block;
             padding-top: 10px;
-            height: auto;
+            border-radius: 50%;
+            
           }
           .info{
          
@@ -1206,3 +1209,4 @@ h1, h2, h3, h4, h5,
           .bt{
             align-items: flex-end;
           }
+          

@@ -6,7 +6,7 @@ $id⁪ = $_POST["vehiculo"];
 $poliza = $_POST["poliza"];
 $seguro = $_POST["seguro"];
 $vigencia = $_POST["fecha"];
-
+$nombre=$_POST["nombre"];
 
 if ($_FILES["archivo"]) {
     $nombre_base = basename($_FILES["archivo"]["name"]);
@@ -16,8 +16,8 @@ if ($_FILES["archivo"]) {
     if ($ruta) {
 
 
-        $insertar_poliza = "INSERT INTO poliza(vehiculo_id, poliza, seguro, vigencia, archivo)
-                VALUES ('$id⁪', '$poliza', '$seguro', '$vigencia', '$ruta')";
+        $insertar_poliza = "INSERT INTO poliza(vehiculo_id, poliza, seguro, vigencia,nombre, archivo)
+                VALUES ('$id⁪', '$poliza', '$seguro', '$vigencia','$nombre', '$ruta')";
 
         $resultadoP = mysqli_query($cone, $insertar_poliza);
         if (!$resultadoP) {

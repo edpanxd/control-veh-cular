@@ -5,6 +5,7 @@ include '../conn.php';
 $id⁪=$_POST["vehiculo"];
 $vencimiento=$_POST["fecha"];
 $estatus=$_POST["estatus"];
+$nombre=$_POST["nombre"];
 
 
 if($_FILES["archivo"]){
@@ -15,8 +16,8 @@ if($_FILES["archivo"]){
     
     if ($ruta){
 
-        $insertar_placas = "INSERT INTO placas(vehiculo_id, vencimiento, estatus, archivo)
-        VALUES ('$id⁪', '$vencimiento', '$estatus', '$ruta')";
+        $insertar_placas = "INSERT INTO placas(vehiculo_id, vencimiento, estatus, nombre, archivo)
+        VALUES ('$id⁪', '$vencimiento', '$estatus','$nombre', '$ruta')";
         
         $resultadoP= mysqli_query($cone, $insertar_placas);
         if (!$resultadoP) {
