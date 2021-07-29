@@ -12,6 +12,7 @@ $insertar_placas = "UPDATE verificacion_a SET estatus = '$estatus' WHERE id ='$i
 
 $resultadoV= mysqli_query($cone, $insertar_placas);
 if (!$resultadoV) {
+    header("Location: ../../404.html");
     echo  $insertar_placas, $resultadoV ;
 } else {
     header('Location:../../verificacion_a.php');

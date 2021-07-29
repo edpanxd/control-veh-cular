@@ -20,7 +20,7 @@ if ($_FILES["archivo"]) {
 
         $resultadoP = mysqli_query($cone, $insertar_poliza);
         if (!$resultadoP) {
-
+            header("Location: ../../404.html");
             echo  $insertar_poliza, $resultadoP;
         } else {
             $subirarchivo = move_uploaded_file($_FILES["archivo"]["tmp_name"], $ruta);

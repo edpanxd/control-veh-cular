@@ -11,5 +11,6 @@ header("Location: ../../proveedor.php");
 }
 else{
     echo "F";
+    header("Location: ../../404.html");
 }
 ?>

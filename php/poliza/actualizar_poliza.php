@@ -13,6 +13,7 @@ $insertar_placas = "UPDATE poliza SET seguro = '$seguro' WHERE id ='$id' ";
 
 $resultadoV= mysqli_query($cone, $insertar_placas);
 if (!$resultadoV) {
+    header("Location: ../../404.html");
     echo  $insertar_placas, $resultadoV ;
 } else {
     header('Location:../../poliza.php');

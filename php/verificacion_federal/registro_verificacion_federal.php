@@ -19,7 +19,7 @@ if ($_FILES["archivo"]) {
 
         $resultadoP = mysqli_query($cone, $insertar_verificacion_f);
         if (!$resultadoP) {
-
+            header("Location: ../../404.html");
             echo  $insertar_verificacion_f, $resultadoP;
         } else {
             header('Location:../../verificacion_federal.php');

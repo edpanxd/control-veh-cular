@@ -75,7 +75,7 @@
                     <a class="dropdown-item" href="verificacion_a.php">verificacion A</a>
                     <a class="dropdown-item" href="verificacion_b.php">verificacion B</a>
                     <a class="dropdown-item" href="verificacion_federal.php">Verificacion federal</a>
-                    <a class="dropdown-item" href="fisico_mecanico.php">fisico mecanico</a>
+                    <a class="dropdown-item" href="fisico_mecanico.php">Fisico mecanico</a>
 
                   </div>
                 </li>
@@ -101,8 +101,6 @@
     </header>
 
     <div class="intro-section" id="home-section">
-
-
       <div class="slide-1" style="background-image: url('images/carretera.jpg');" data-stellar-background-ratio="0.5">
         <div class="container">
 

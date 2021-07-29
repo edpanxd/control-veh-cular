@@ -19,7 +19,7 @@ if ($_FILES["archivo"]) {
 
         $resultadoP = mysqli_query($cone, $insertar_verificacion_m);
         if (!$resultadoP) {
-
+            header("Location: ../../404.html");
             echo  $insertar_verificacion_m, $resultadoP;
         } else {
             $subirarchivo = move_uploaded_file($_FILES["archivo"]["tmp_name"], $ruta);

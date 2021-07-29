@@ -13,5 +13,6 @@ header("Location: ../../verificacion_federal.php");
 }
 else{
     echo "F";
+    header("Location: ../../404.html");
 }
 ?>

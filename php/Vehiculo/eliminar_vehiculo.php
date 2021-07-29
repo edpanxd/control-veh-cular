@@ -10,6 +10,7 @@ if($resultado){
 header("Location: ../../vehiculos.php");
 }
 else{
+    header("Location: ../../404.html");
     echo "F";
 }
 ?>

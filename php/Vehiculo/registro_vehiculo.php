@@ -19,6 +19,7 @@ VALUES ('$marca', '$submarca', '$tipo', '$modelo', '$color', '$placas', '$serie'
 
 $resultadoV= mysqli_query($cone, $insertar_vehiculo);
 if (!$resultadoV) {
+    header("Location: ../../404.html");
     echo  $insertar_vehiculo, $resultadoV ;
 } else {
     header('Location:../../vehiculos.php');

@@ -14,6 +14,7 @@ $insertar_placas = "UPDATE verificacion_federal SET estatus = '$estatus' WHERE i
 $resultadoV= mysqli_query($cone, $insertar_placas);
 if (!$resultadoV) {
     echo  $insertar_placas, $resultadoV ;
+    header('Location:../../404.html');
 } else {
     header('Location:../../verificacion_federal.php');
 }

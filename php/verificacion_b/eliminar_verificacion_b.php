@@ -12,6 +12,7 @@ unlink($url);
 header("Location: ../../verificacion_b.php");
 }
 else{
+    header("Location: ../../404.html");
     echo "F";
 }
 ?>

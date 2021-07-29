@@ -18,7 +18,7 @@ VALUES ('$nombre', '$grupo', '$familia', '$ubicacion', '$contacto', '$correo')";
 
 $resultadoP= mysqli_query($cone, $insertar_proveedor);
 if (!$resultadoP) {
-    
+    header("Location: ../../404.html");
     echo  $insertar_proveedor, $resultadoP;
 } else {
     header('Location:../../proveedor.php');

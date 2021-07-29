@@ -11,5 +11,6 @@ header("Location: ../../fisico_mecanico.php");
 }
 else{
     echo $eliminar;
+    header("Location: ../../404.html");
 }
 ?>

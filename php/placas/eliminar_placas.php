@@ -15,5 +15,6 @@ if($resultado){
 }
 else{
     echo "F";
+    header("Location: ../../404.html");
 }
 ?>

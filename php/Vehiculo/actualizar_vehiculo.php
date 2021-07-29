@@ -18,6 +18,7 @@ $insertar_vehiculo = "UPDATE vehiculos SET marca ='$marca', submarca ='$submarca
 
 $resultadoV= mysqli_query($cone, $insertar_vehiculo);
 if (!$resultadoV) {
+    header("Location: ../../404.html");
     echo  $insertar_vehiculo, $resultadoV ;
 } else {
     header('Location:../../vehiculos.php');
